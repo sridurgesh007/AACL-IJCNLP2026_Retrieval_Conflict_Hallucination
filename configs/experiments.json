@@ -89,16 +89,33 @@
     "script": "29_preflight_medqa_v3.py",
     "description": "Prepare condition caches and audit template",
     "args": {
-      "seed": 1234,
+      "cache_dir": "cache/medqa_acts",
+      "conflict_path": "data/medqa_conflict_500.jsonl",
       "device": "cuda",
-      "torch_dtype": "bfloat16",
+      "killtest_cache_dir": "cache/medqa_acts_killtest",
       "label_audit_path": "results/medqa_final_v3/label_audit.json",
-      "conflict_path": "data/medqa_conflict_500.jsonl"
+      "max_length": 1024,
+      "max_new_tokens": 5,
+      "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "out_dir": "results/medqa_final_v3",
+      "seed": 1234,
+      "target_head": 20,
+      "target_layer": 27,
+      "torch_dtype": "bfloat16",
+      "v1_results_path": "results/medqa_eval/medqa_eval_results.jsonl",
+      "wallclock_probe_n": 20
     },
     "input_args": [
       "conflict_path",
       "label_audit_path"
-    ]
+    ],
+    "source_metadata": {
+      "source_root": "experiment",
+      "source": "medqa_final_v3/preflight.json",
+      "sha256": "f3035a84d3b41b70be91c987b3ab9096c37f1ef09dd5b59b1cf6073a4bc800e4",
+      "unsupported_archived_args": {}
+    },
+    "scope": "Recorded camera-ready run arguments. Exact frozen inputs and package/model revisions must be supplied separately; outputs are regenerated locally."
   },
   "medqa.decomposition": {
     "family": "medrag",
@@ -143,14 +160,23 @@
     "script": "32_run_medqa_killtest.py",
     "description": "Prompt controls and gated intervention",
     "args": {
-      "seed": 1234,
-      "device": "cuda",
-      "torch_dtype": "bfloat16",
-      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "alpha": 1.0,
       "best_cell_path": "results/medqa_final_v3/decomposition/best_cell.json",
-      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "cache_dir": "cache/medqa_acts_killtest",
+      "conflict_path": "data/medqa_conflict_500.jsonl",
+      "device": "cuda",
       "headline_path": "results/medqa_final_v3/pr_sweep/headline.json",
-      "conflict_path": "data/medqa_conflict_500.jsonl"
+      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "max_length": 1024,
+      "max_new_tokens": 5,
+      "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "out_dir": "results/medqa_final_v3/killtest",
+      "p_set_mode": "all_wrong",
+      "seed": 1234,
+      "target_head": 20,
+      "target_layer": 27,
+      "torch_dtype": "bfloat16"
     },
     "input_args": [
       "best_cell_path",
@@ -158,7 +184,14 @@
       "headline_path",
       "label_audit_path",
       "matched_subset_path"
-    ]
+    ],
+    "source_metadata": {
+      "source_root": "experiment",
+      "source": "medqa_final_v3/killtest/comparison.json",
+      "sha256": "6da6c9fd4df094cde5c29612e3aafe01cf4d22ff49922b869a64c89ed9fdf517",
+      "unsupported_archived_args": {}
+    },
+    "scope": "Recorded camera-ready run arguments. Exact frozen inputs and package/model revisions must be supplied separately; outputs are regenerated locally."
   },
   "medqa.headline": {
     "family": "medrag",
@@ -251,22 +284,37 @@
     "script": "83_run_matched_head_controls.py",
     "description": "Matched random/attribution/disruption controls",
     "args": {
-      "seed": 1234,
-      "device": "cuda",
-      "torch_dtype": "bfloat16",
-      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
-      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "cache_dir": "cache/medqa_acts",
       "conflict_path": "data/medqa_conflict_500.jsonl",
+      "device": "cuda",
       "h4_results_path": "results/medqa_final_v3/consolidation/headline_verify/H4/results.jsonl",
-      "head_importance_path": "results/medqa_final_v3/localization_v2/head_importance.json"
+      "head_importance_path": "results/medqa_final_v3/localization_v2/head_importance.json",
+      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "max_length": 1024,
+      "max_new_tokens": 5,
+      "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "n_random_draws": 20,
+      "out_dir": "results/rebuttal/matched_head_controls_fixed_disruption_v2",
+      "pair_path": "results/medqa_final_v3/causal/patching_pairs.json",
+      "seed": 1234,
+      "torch_dtype": "bfloat16"
     },
     "input_args": [
       "conflict_path",
       "h4_results_path",
       "head_importance_path",
       "label_audit_path",
-      "matched_subset_path"
-    ]
+      "matched_subset_path",
+      "pair_path"
+    ],
+    "source_metadata": {
+      "source_root": "experiment",
+      "source": "hallucination_experiment/matched_head_controls_fixed_disruption_v2/summary.json",
+      "sha256": "fcbb7fc56b8f8b31f1908de633997d2692d4d6e511de04267924bba477eb0c5a",
+      "unsupported_archived_args": {}
+    },
+    "scope": "Recorded camera-ready run arguments. Exact frozen inputs and package/model revisions must be supplied separately; outputs are regenerated locally."
   },
   "medqa.subthreshold": {
     "family": "medrag",
@@ -324,23 +372,37 @@
     "script": "63_run_popqa_intervention.py",
     "description": "Llama balanced alias-promotion full evaluation",
     "args": {
-      "seed": 1,
       "device": "cuda",
-      "torch_dtype": "bfloat16",
-      "input_path": "data/popqa_conflict_3141_natural.jsonl",
-      "results_dir": "results/popqa/full_3141_balanced",
-      "pilot_examples": 300,
-      "max_items": 0,
-      "intervention_mode": "balanced",
       "evidence_token_source": "aliases",
-      "lambda_values": "5.0",
-      "lambda_pos_values": "2.5,5.0,7.5,10.0",
+      "fixed_lambda": 5.0,
+      "fixed_lambda_pos": null,
       "fixed_tau": 0.0,
-      "fixed_lambda": 5.0
+      "input_path": "data/popqa_conflict_3141_natural.jsonl",
+      "intervention_mode": "balanced",
+      "lambda_pos_values": "2.5,5.0,7.5,10.0",
+      "lambda_values": "5.0",
+      "max_items": 0,
+      "max_length": 1024,
+      "max_new_tokens": 10,
+      "min_margin_auc": 0.8,
+      "min_parametric_pilot": 15,
+      "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "n_suppress_steps": 3,
+      "pilot_examples": 300,
+      "results_dir": "results/popqa/full_3141_balanced",
+      "seed": 1,
+      "torch_dtype": "bfloat16"
     },
     "input_args": [
       "input_path"
-    ]
+    ],
+    "source_metadata": {
+      "source_root": "experiment",
+      "source": "hallucination_experiment/full_3141_balanced/summary.json",
+      "sha256": "3048aa1ea8fc7648bbdcf59cbf5389b55a00741c0278b800b39d2a21e4dd1d0e",
+      "unsupported_archived_args": {}
+    },
+    "scope": "Recorded camera-ready run arguments. Exact frozen inputs and package/model revisions must be supplied separately; outputs are regenerated locally."
   },
   "popqa.suppression": {
     "family": "conflictqa",
@@ -425,15 +487,25 @@
     "script": "63_run_selective_prediction.py",
     "description": "Selective risk/coverage and sampling comparisons",
     "args": {
-      "seed": 1234,
       "device": "cuda",
-      "torch_dtype": "bfloat16",
-      "medqa_matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "figures_dir": "results/final_paper/selective_prediction_20260521_v3/figures",
+      "max_length": 1024,
+      "medqa_cache_dir": "cache/final_paper/selective_prediction_20260521_v3/medqa",
       "medqa_conflict_path": "data/medqa_conflict_500.jsonl",
-      "popqa_results_path": "../conflictqa/results/popqa/full_3141/results.jsonl",
-      "medqa_results_path": "results/medqa_final_v3/consolidation/headline_verify/H4/results.jsonl",
       "medqa_label_audit_path": "results/medqa_final_v3/label_audit.json",
-      "popqa_summary_path": "../conflictqa/results/popqa/full_3141/summary.json"
+      "medqa_matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "medqa_max_new_tokens": 5,
+      "medqa_results_path": "results/medqa_final_v3/consolidation/headline_verify/H4/results.jsonl",
+      "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "out_dir": "results/final_paper/selective_prediction_20260521_v3",
+      "popqa_max_new_tokens": 10,
+      "popqa_results_path": "../conflictqa/results/popqa/full_3141/results.jsonl",
+      "popqa_summary_path": "../conflictqa/results/popqa/full_3141/summary.json",
+      "sample_temperature": 1.0,
+      "sample_top_p": 1.0,
+      "seed": 1234,
+      "self_consistency_samples": 5,
+      "torch_dtype": "bfloat16"
     },
     "input_args": [
       "medqa_conflict_path",
@@ -442,26 +514,43 @@
       "medqa_results_path",
       "popqa_results_path",
       "popqa_summary_path"
-    ]
+    ],
+    "source_metadata": {
+      "source_root": "experiment",
+      "source": "hallucination_experiment/final_paper/selective_prediction_20260521_v3/aurc_comparison.json",
+      "sha256": "32731c1b4fddf3dbebadb98159e7108ae2decd2fadc123c4e37d346522b63b08",
+      "unsupported_archived_args": {}
+    },
+    "scope": "Recorded camera-ready run arguments. Exact frozen inputs and package/model revisions must be supplied separately; outputs are regenerated locally."
   },
   "paper.deployment": {
     "family": "medrag",
     "script": "62_run_deployment_characterization.py",
     "description": "Latency, memory and batching characterization",
     "args": {
-      "seed": 1234,
-      "device": "cuda",
-      "torch_dtype": "bfloat16",
-      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
-      "label_audit_path": "results/medqa_final_v3/label_audit.json",
-      "llama_summary_path": "results/medqa_final_v3/consolidation/headline_verify/H4/summary.json",
-      "headline_path": "results/medqa_final_v3/pr_sweep/headline.json",
+      "alpha": 1.0,
+      "batch_size": 8,
+      "cache_root": "cache/final_paper/deployment_20260521_v3",
       "conflict_path": "data/medqa_conflict_500.jsonl",
+      "device": "cuda",
+      "headline_path": "results/medqa_final_v3/pr_sweep/headline.json",
+      "label_audit_path": "results/medqa_final_v3/label_audit.json",
       "llama_site_path": "results/medqa_final_v3/localization_v2/head_importance.json",
-      "mistral_summary_path": "results/cross_model/mistral_intervention/summary.json",
+      "llama_summary_path": "results/medqa_final_v3/consolidation/headline_verify/H4/summary.json",
+      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "max_length": 1024,
+      "max_new_tokens": 5,
       "mistral_site_path": "results/cross_model/mistral_localization/head_importance.json",
-      "qwen_summary_path": "results/cross_model/qwen_intervention/summary.json",
-      "qwen_site_path": "results/cross_model/qwen_localization/layer_importance.json"
+      "mistral_summary_path": "results/cross_model/mistral_medqa_L29H2_tlb_full/summary.json",
+      "n_items": 100,
+      "out_dir": "results/final_paper/deployment_20260521_v3",
+      "p_set_mode": "all_wrong",
+      "prompt_variant": "vanilla",
+      "qwen_site_path": "results/cross_model/qwen_localization/layer_importance.json",
+      "qwen_summary_path": "results/cross_model/qwen_intervention_20260515/summary.json",
+      "seed": 1234,
+      "torch_dtype": "bfloat16",
+      "warmup_items": 10
     },
     "input_args": [
       "conflict_path",
@@ -474,7 +563,14 @@
       "mistral_summary_path",
       "qwen_site_path",
       "qwen_summary_path"
-    ]
+    ],
+    "source_metadata": {
+      "source_root": "experiment",
+      "source": "hallucination_experiment/final_paper/deployment_20260521_v3/latency.json",
+      "sha256": "2fcd8af9292795f34e2b588a9d5cc5b3161c9d58c117cae1c223cb17f01679e5",
+      "unsupported_archived_args": {}
+    },
+    "scope": "Recorded camera-ready run arguments. Exact frozen inputs and package/model revisions must be supplied separately; outputs are regenerated locally."
   },
   "paper.mistral-medqa": {
     "family": "medrag",

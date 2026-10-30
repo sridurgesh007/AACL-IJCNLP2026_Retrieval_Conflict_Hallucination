@@ -1,0 +1,85 @@
+{
+  "note": "Applied historical operating points for verification, not replacement model outputs or a claim that pilot reselection is deterministic across environments.",
+  "profiles": {
+    "medqa.preflight": {
+      "settings": {
+        "target_layer": 27,
+        "target_head": 20
+      },
+      "source_sha256": "f3035a84d3b41b70be91c987b3ab9096c37f1ef09dd5b59b1cf6073a4bc800e4"
+    },
+    "medqa.killtest": {
+      "settings": {
+        "tau_margin": 2.0,
+        "lambda_pos": 0.0,
+        "lambda_neg": 2.5,
+        "bootstrap_space": "E_letter"
+      },
+      "source_sha256": "6da6c9fd4df094cde5c29612e3aafe01cf4d22ff49922b869a64c89ed9fdf517"
+    },
+    "popqa.balanced": {
+      "settings": {
+        "selected_tau": 0.0,
+        "selected_lambda_pos": 10.0,
+        "selected_lambda_neg": 5.0
+      },
+      "source_sha256": "3048aa1ea8fc7648bbdcf59cbf5389b55a00741c0278b800b39d2a21e4dd1d0e"
+    },
+    "paper.mistral-medqa": {
+      "settings": {
+        "selected_tau_margin": 0.11434915661811829,
+        "selected_lambda_pos": 2.5,
+        "selected_lambda_neg": 5.0,
+        "target_layer": 29,
+        "target_head": 2,
+        "bootstrap_space": "E_letter",
+        "site_mode": "head"
+      },
+      "source_sha256": "a287e85bbd02b150db6225969f3705df98c4bfc5222568f17ec8a78e2302fb9b"
+    },
+    "paper.qwen-medqa": {
+      "settings": {
+        "selected_tau_margin": 1.9325401782989502,
+        "selected_lambda_pos": 0.0,
+        "selected_lambda_neg": 7.5,
+        "target_layer": 24,
+        "target_head": 0,
+        "bootstrap_space": "E_letter",
+        "site_mode": "layer"
+      },
+      "source_sha256": "c62e95ef1a533f8ddd4a7d3de7ccebe8e169bd772f75375cd4b16942b9142e50"
+    },
+    "paper.mistral-counterfact": {
+      "settings": {
+        "selected_tau": 0.59375,
+        "selected_lambda_pos": 5.0,
+        "selected_lambda_neg": 5.0
+      },
+      "source_sha256": "0b45b6dfeacbc1ab1ce06d3f357f0532461c46c49537cd1e9f68683938d260af"
+    },
+    "paper.qwen-counterfact": {
+      "settings": {
+        "selected_tau": 0.3125,
+        "selected_lambda_pos": 10.0,
+        "selected_lambda_neg": 5.0
+      },
+      "source_sha256": "aff670767b695f9b6ca775237ab4a5078531db5993fd9aa58c09236dddd52ca9"
+    },
+    "paper.mistral-popqa": {
+      "settings": {
+        "selected_tau": 3.750244140625,
+        "selected_lambda_pos": 10.0,
+        "selected_lambda_neg": 10.0
+      },
+      "source_sha256": "778e3fc90d19960b372f82aca8229b8fa6fa30afaac09c3e02da3381a1b20d84"
+    },
+    "paper.qwen-popqa": {
+      "settings": {
+        "selected_tau": -0.12554264068603516,
+        "selected_lambda_pos": 10.0,
+        "selected_lambda_neg": 7.5
+      },
+      "source_sha256": "4d8aa47f8543f0940caeac7933437ac6781abdb5dfa0f01b886b309465ab4851"
+    }
+  }
+}

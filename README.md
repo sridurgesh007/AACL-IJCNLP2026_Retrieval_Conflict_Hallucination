@@ -29,6 +29,8 @@ Use Python 3.10 or newer. CUDA is required for the large-model experiments. Acce
 
 `requirements.txt` gives supported dependency bounds; it is **not** a recovered lock of the historical cluster. Every executed profile records its actual installed package versions and full command in ignored `run_records/`. We have validated CPU-side contracts and statistics; this release has not been rerun end-to-end on a GPU in the packaging environment.
 
+Twelve metadata-backed profiles have also been checked against the archived runs' explicit CLI arguments and source hashes: see [Recorded settings verification](docs/SETTINGS_VERIFICATION.md). Preparation and helper profiles without archived metadata are labelled separately; they are not presented as historically verified runs.
+
 ## Reproduction paths
 
 1. Read [Data preparation](docs/DATA.md). Acquire upstream data under its own terms, or import your own frozen prepared inputs. No benchmark is bundled.

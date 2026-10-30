@@ -12,6 +12,7 @@ sys.path.insert(0,str(ROOT/'tools'))
 import run
 import prepare_data
 import audit_medqa
+import verify_recorded_settings
 
 
 class ReleaseTests(unittest.TestCase):
@@ -59,6 +60,16 @@ class ReleaseTests(unittest.TestCase):
     def test_unknown_flags_fail(self):
         profile={'family':'medrag','script':'32_run_medqa_killtest.py','args':{'invented_flag':1}}
         with self.assertRaises(ValueError):run.make_command(profile)
+
+    def test_historical_setting_mismatch_is_detected(self):
+        differences=verify_recorded_settings.compare({'args':{'seed':1,'max_new_tokens':5}},{'seed':1234,'max_new_tokens':5})
+        self.assertEqual(set(differences),{'seed'})
+
+    def test_published_settings_audit_has_no_missing_recorded_run(self):
+        report=json.loads((ROOT/'docs/recorded_settings_audit.json').read_text())
+        verified=[row for row in report['profiles'] if row['status']=='match']
+        self.assertEqual(len(verified),12)
+        self.assertFalse(any(row['status'] in ('mismatch','source_unavailable') for row in report['profiles']))
 
     def test_disruption_priority_partitions_overlap(self):
         path=ROOT/'implementation/medrag/scripts/83_run_matched_head_controls.py'

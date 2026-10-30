@@ -1,0 +1,250 @@
+{
+  "scope": "Recorded CLI settings and source hashes only. No assertion of identical upstream data, model/tokenizer revision, historical package environment or GPU outputs.",
+  "profiles": [
+    {
+      "profile": "counterfact.prepare",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "counterfact.trace",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "counterfact.baseline",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "counterfact.ov",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "medqa.prepare",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "medqa.preflight",
+      "status": "match",
+      "source": "medqa_final_v3/preflight.json",
+      "source_hash_matches": true,
+      "recorded_arguments_checked": 15,
+      "differences": {},
+      "release_explicit_additions": {}
+    },
+    {
+      "profile": "medqa.decomposition",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "medqa.sweep",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "medqa.killtest",
+      "status": "match",
+      "source": "medqa_final_v3/killtest/comparison.json",
+      "source_hash_matches": true,
+      "recorded_arguments_checked": 17,
+      "differences": {},
+      "release_explicit_additions": {}
+    },
+    {
+      "profile": "medqa.headline",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "medqa.localize",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "medqa.pairs",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "medqa.joint",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "medqa.matched-controls",
+      "status": "match",
+      "source": "hallucination_experiment/matched_head_controls_fixed_disruption_v2/summary.json",
+      "source_hash_matches": true,
+      "recorded_arguments_checked": 15,
+      "differences": {},
+      "release_explicit_additions": {}
+    },
+    {
+      "profile": "medqa.subthreshold",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "popqa.prepare",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "popqa.rebuild",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "popqa.balanced",
+      "status": "match",
+      "source": "hallucination_experiment/full_3141_balanced/summary.json",
+      "source_hash_matches": true,
+      "recorded_arguments_checked": 20,
+      "differences": {},
+      "release_explicit_additions": {}
+    },
+    {
+      "profile": "popqa.suppression",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "popqa.plot",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "popqa.analyze",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "counterfact.belief",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "counterfact.stratify",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "paper.selective",
+      "status": "match",
+      "source": "hallucination_experiment/final_paper/selective_prediction_20260521_v3/aurc_comparison.json",
+      "source_hash_matches": true,
+      "recorded_arguments_checked": 19,
+      "differences": {},
+      "release_explicit_additions": {}
+    },
+    {
+      "profile": "paper.deployment",
+      "status": "match",
+      "source": "hallucination_experiment/final_paper/deployment_20260521_v3/latency.json",
+      "source_hash_matches": true,
+      "recorded_arguments_checked": 23,
+      "differences": {},
+      "release_explicit_additions": {}
+    },
+    {
+      "profile": "paper.mistral-medqa",
+      "status": "match",
+      "source": "mistral_medqa_L29H2_tlb_full/summary.json",
+      "source_hash_matches": true,
+      "recorded_arguments_checked": 25,
+      "differences": {},
+      "release_explicit_additions": {}
+    },
+    {
+      "profile": "paper.qwen-medqa",
+      "status": "match",
+      "source": "qwen_intervention_20260515/summary.json",
+      "source_hash_matches": true,
+      "recorded_arguments_checked": 21,
+      "differences": {},
+      "release_explicit_additions": {
+        "intervention_impl": "token_logit_bias"
+      }
+    },
+    {
+      "profile": "paper.mistral-counterfact",
+      "status": "match",
+      "source": "mistral_counterfact_L29H2_v2_full/summary.json",
+      "source_hash_matches": true,
+      "recorded_arguments_checked": 16,
+      "differences": {},
+      "release_explicit_additions": {}
+    },
+    {
+      "profile": "paper.qwen-counterfact",
+      "status": "match",
+      "source": "qwen_counterfact_v2_full/summary.json",
+      "source_hash_matches": true,
+      "recorded_arguments_checked": 16,
+      "differences": {},
+      "release_explicit_additions": {}
+    },
+    {
+      "profile": "paper.mistral-popqa",
+      "status": "match",
+      "source": "mistral_popqa_c2_balanced_ablation/summary.json",
+      "source_hash_matches": true,
+      "recorded_arguments_checked": 20,
+      "differences": {},
+      "release_explicit_additions": {}
+    },
+    {
+      "profile": "paper.qwen-popqa",
+      "status": "match",
+      "source": "qwen_popqa_c2_balanced_ablation/summary.json",
+      "source_hash_matches": true,
+      "recorded_arguments_checked": 20,
+      "differences": {},
+      "release_explicit_additions": {}
+    },
+    {
+      "profile": "mistral.medqa-localize",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "mistral.counterfact-localize",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "mistral.medqa-pilot",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "mistral.counterfact-pilot",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "qwen.medqa-localize",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "qwen.counterfact-localize",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "qwen.medqa-pilot",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    },
+    {
+      "profile": "qwen.counterfact-pilot",
+      "status": "not_verified_against_recorded_run",
+      "reason": "Preparation/helper/new-run profile; no archived CLI manifest is attached."
+    }
+  ]
+}

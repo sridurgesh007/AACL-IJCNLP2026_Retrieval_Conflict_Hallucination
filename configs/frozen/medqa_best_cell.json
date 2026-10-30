@@ -1,0 +1,11 @@
+{
+  "bootstrap_space": "E_letter",
+  "intervention_space": "E_letter",
+  "lambda_pos": 0.0,
+  "lambda_neg": 2.5,
+  "tau_margin": 0.0,
+  "alpha": 1.0,
+  "p_set_mode": "all_wrong",
+  "target_layer": 27,
+  "target_head": 20
+}

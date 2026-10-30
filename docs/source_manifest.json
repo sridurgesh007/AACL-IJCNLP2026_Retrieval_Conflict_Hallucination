@@ -1,0 +1,721 @@
+{
+  "source_root": "hallucination_experiment",
+  "note": "Original hashes; release portability patches are listed in IMPLEMENTATION.md. No datasets, outputs, weights or caches were copied.",
+  "files": [
+    {
+      "path": "implementation/medrag/src/medrag/__init__.py",
+      "source": "medrag/src/medrag/__init__.py",
+      "sha256_original": "e52b71b29c28e5cd541ddc6124aa1334ed6235cd2d9ea9e33e32eea494d71fa9"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/activation_patch.py",
+      "source": "medrag/src/medrag/activation_patch.py",
+      "sha256_original": "f5d29be2c788f6886ff706db1bdfb2a8548abccec8d133d7710cbc7287dae00a"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/baselines/__init__.py",
+      "source": "medrag/src/medrag/baselines/__init__.py",
+      "sha256_original": "724c18fd4bf2a3c9faa2991c153fa0c0cecdd909346539d7c353fa1235abf4d0"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/baselines/iti.py",
+      "source": "medrag/src/medrag/baselines/iti.py",
+      "sha256_original": "58fc9b640285fa04dc32871b3e791cf47a68bf66b10ba016fc2e3e257747d5e3"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/causal_localization.py",
+      "source": "medrag/src/medrag/causal_localization.py",
+      "sha256_original": "1453e7b162246ef565e1c6e7a82667850ae7652d83f1b948251e94b13f39e44b"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/counterfact_cross_model.py",
+      "source": "medrag/src/medrag/counterfact_cross_model.py",
+      "sha256_original": "3573dea2d878e6ba4231987beeeb6dbe44e8dfe5f70fcf30dd1aaec45c9be474"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/decomposed_gate.py",
+      "source": "medrag/src/medrag/decomposed_gate.py",
+      "sha256_original": "66501a3dedadb810d01897e20d30b2b99458b445b1a50ac8af60c27d7b21f737"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/final_paper.py",
+      "source": "medrag/src/medrag/final_paper.py",
+      "sha256_original": "0eebc9f1e466ba1bd01d242a541899e2ff5ec48b1ad2c2b628093f23cdb6f0cb"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/localization_v2.py",
+      "source": "medrag/src/medrag/localization_v2.py",
+      "sha256_original": "a8b12671a02b8ed71d152805f03e5ac1030ee1cb6b44869ce00e69484a419964"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/matched_subset.py",
+      "source": "medrag/src/medrag/matched_subset.py",
+      "sha256_original": "ac193acc044143bcc8a1aeb787ea7536ba1b02777b81b45b1c2d91f2f2b08833"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/medical_rag/__init__.py",
+      "source": "medrag/src/medrag/medical_rag/__init__.py",
+      "sha256_original": "690c681e5bb942f1e31989d53a4a2c3a72a75502b731fb54274b63cfa9d373f5"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/medical_rag/clasheval_loader.py",
+      "source": "medrag/src/medrag/medical_rag/clasheval_loader.py",
+      "sha256_original": "72976095adae590643e9026baaa828d266d388667f2b126d52447a07e1ce9522"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/medical_rag/ep_builder.py",
+      "source": "medrag/src/medrag/medical_rag/ep_builder.py",
+      "sha256_original": "87df366704e4f5ab90567f6b290d5ab387e63b901ae81b216d2d9de919755843"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/medical_rag/evaluation.py",
+      "source": "medrag/src/medrag/medical_rag/evaluation.py",
+      "sha256_original": "81d9ccb6a499786f3bd40c64d0faedff9f5ff746cde1bdd4f910a806eaf49601"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/medical_rag/medqa_loader.py",
+      "source": "medrag/src/medrag/medical_rag/medqa_loader.py",
+      "sha256_original": "5ba29304a70c4feb3ab2e22b27f81c380e68ad56ed5da0d7a25fcd4cae8aa1b2"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/medical_rag/utils.py",
+      "source": "medrag/src/medrag/medical_rag/utils.py",
+      "sha256_original": "9af37b83323a5be3da6c5c094dd537210c83171a2ede9d10fc54368278a94165"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/medqa_v3.py",
+      "source": "medrag/src/medrag/medqa_v3.py",
+      "sha256_original": "50c8a56f117069efdbe135ff5b73371e6ae29e7bca392a1bd0ee2816e129a8fe"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/prompt_variants.py",
+      "source": "medrag/src/medrag/prompt_variants.py",
+      "sha256_original": "49cc1807b576d5c85d1527fb33a2c8a33f63a286d8685ecce749fb3ca60f3a78"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/running_margin_gate.py",
+      "source": "medrag/src/medrag/running_margin_gate.py",
+      "sha256_original": "0bcfb6bbd9ac20f76152c34ab10095ee202a574ee343b51b165305d6e96cd733"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/utils/__init__.py",
+      "source": "medrag/src/medrag/utils/__init__.py",
+      "sha256_original": "806a2b8f75ef6180c606242aae9926c7a4369ad9e0e4ee0f4360c0ff8080668d"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/utils/activation_cache.py",
+      "source": "medrag/src/medrag/utils/activation_cache.py",
+      "sha256_original": "3d62bad41c915bcce9f4a2af74f4ea59801fe83273e155f1b7f05291f200e1b6"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/utils/io.py",
+      "source": "medrag/src/medrag/utils/io.py",
+      "sha256_original": "0d92f900515a31d6d6c0ee41a782e7c25c156d9afd970f951a9d18929d14a0e5"
+    },
+    {
+      "path": "implementation/medrag/src/medrag/utils/stats.py",
+      "source": "medrag/src/medrag/utils/stats.py",
+      "sha256_original": "719fdbd79aa3c43d885e9122b7dad3645b71ef47c49820006cb77036987a68fe"
+    },
+    {
+      "path": "implementation/medrag/scripts/22_build_medqa_conflict.py",
+      "source": "medrag/scripts/22_build_medqa_conflict.py",
+      "sha256_original": "7dcf13f1a12808bb4a260db52e316d9a32eb59b00d21d3d4f8a4e8b2a7aaca17"
+    },
+    {
+      "path": "implementation/medrag/scripts/23_run_medqa_eval.py",
+      "source": "medrag/scripts/23_run_medqa_eval.py",
+      "sha256_original": "cda7a24565fe0e9d36ef193d2f85ff1fbf153f30e5cd3d250e407ca20f3f93ce"
+    },
+    {
+      "path": "implementation/medrag/scripts/24_plot_medqa_ablation.py",
+      "source": "medrag/scripts/24_plot_medqa_ablation.py",
+      "sha256_original": "4184c9cdd2545eae7e5eb0739d6f95d26e5b5ff4fe1f1c18fe487ba4cead86ed"
+    },
+    {
+      "path": "implementation/medrag/scripts/25_run_medqa_eval_robust.py",
+      "source": "medrag/scripts/25_run_medqa_eval_robust.py",
+      "sha256_original": "88d86556b7a6e3b6b0da626f68992ee94b20a9a52549deb6f19d522209fc239b"
+    },
+    {
+      "path": "implementation/medrag/scripts/26_plot_medqa_robust_ablation.py",
+      "source": "medrag/scripts/26_plot_medqa_robust_ablation.py",
+      "sha256_original": "2de36d23c0e1640d3142dbd806540f9f0f6455a1cc5432169696004e98ef080c"
+    },
+    {
+      "path": "implementation/medrag/scripts/27_run_medqa_eval_final.py",
+      "source": "medrag/scripts/27_run_medqa_eval_final.py",
+      "sha256_original": "87b17e10e7a0a0a188bf31c63736f0ac286db3d5fe82880f31231b5be1dc75ec"
+    },
+    {
+      "path": "implementation/medrag/scripts/28_plot_medqa_final.py",
+      "source": "medrag/scripts/28_plot_medqa_final.py",
+      "sha256_original": "191ceda6c1394b11bf17f1838247c2604cb8205691446f35a3389ae5452136bc"
+    },
+    {
+      "path": "implementation/medrag/scripts/29_preflight_medqa_v3.py",
+      "source": "medrag/scripts/29_preflight_medqa_v3.py",
+      "sha256_original": "d00ca9ba8bec35d97704de7c83acfa69a878e7f01ae0e7517e2b335c79711d97"
+    },
+    {
+      "path": "implementation/medrag/scripts/30_run_medqa_decomposition.py",
+      "source": "medrag/scripts/30_run_medqa_decomposition.py",
+      "sha256_original": "3cd5762c6f1d128177e20149685a63ca8b7c068acc4423c26212ee07a29db26f"
+    },
+    {
+      "path": "implementation/medrag/scripts/31_run_medqa_pr_sweep.py",
+      "source": "medrag/scripts/31_run_medqa_pr_sweep.py",
+      "sha256_original": "a2a3a993a373957cc65c17de758dec80d0e0032f644abb17b5c985d736447876"
+    },
+    {
+      "path": "implementation/medrag/scripts/32_run_medqa_killtest.py",
+      "source": "medrag/scripts/32_run_medqa_killtest.py",
+      "sha256_original": "0892f304eba7fa8eb4381a5a2915deea9e1de08d966c0e45ab5284c908fbf6cc"
+    },
+    {
+      "path": "implementation/medrag/scripts/33_plot_medqa_v3.py",
+      "source": "medrag/scripts/33_plot_medqa_v3.py",
+      "sha256_original": "d5c3c989576dabb9ba49f9ac4ed41d22d92ebf2c436430a12a0d4383f2fb08f2"
+    },
+    {
+      "path": "implementation/medrag/scripts/33_run_medqa_decomposition_subthreshold.py",
+      "source": "medrag/scripts/33_run_medqa_decomposition_subthreshold.py",
+      "sha256_original": "5461115fea289247ec99c329b853e5f18b46362fb8ed673b17daa36329e3b0ec"
+    },
+    {
+      "path": "implementation/medrag/scripts/34_plot_medqa_decomposition_subthreshold.py",
+      "source": "medrag/scripts/34_plot_medqa_decomposition_subthreshold.py",
+      "sha256_original": "0abba90be783cf86d4c9b6ef39e4c739c473fde910d30cebdd9f49bc13c6f055"
+    },
+    {
+      "path": "implementation/medrag/scripts/34_run_medqa_balanced_headline.py",
+      "source": "medrag/scripts/34_run_medqa_balanced_headline.py",
+      "sha256_original": "6e0c2b66e964f537cb5d8c0ff59f8d8e92e64633d648ef923e52bf5c5bbc9484"
+    },
+    {
+      "path": "implementation/medrag/scripts/39_preflight_medqa_causal.py",
+      "source": "medrag/scripts/39_preflight_medqa_causal.py",
+      "sha256_original": "fb0abf9d7b5197c98281000c1417ee52e3471699529b338ef47930c7cf3aeec2"
+    },
+    {
+      "path": "implementation/medrag/scripts/40_run_causal_patching.py",
+      "source": "medrag/scripts/40_run_causal_patching.py",
+      "sha256_original": "46e7501c7309dfb1544b6eebad5ab2fefafaf238b04bb6cf73a816b115df6aad"
+    },
+    {
+      "path": "implementation/medrag/scripts/41_run_causal_patching_counterfactual.py",
+      "source": "medrag/scripts/41_run_causal_patching_counterfactual.py",
+      "sha256_original": "a4fa2d297736ddab8960d7d4e534ddeecc09d96c5d222fa3b31f5f8080b03c94"
+    },
+    {
+      "path": "implementation/medrag/scripts/42_run_head_signature.py",
+      "source": "medrag/scripts/42_run_head_signature.py",
+      "sha256_original": "7b19857f6b01ffec1e5eb815001a619dc069b479b573be817ce5b7bf2a501489"
+    },
+    {
+      "path": "implementation/medrag/scripts/43_run_medqa_localization.py",
+      "source": "medrag/scripts/43_run_medqa_localization.py",
+      "sha256_original": "25b54b8923fa10a4294885b6d0701e5c8b306e422a0db13f99d3faefdba21071"
+    },
+    {
+      "path": "implementation/medrag/scripts/43_update_medqa_causal_report.py",
+      "source": "medrag/scripts/43_update_medqa_causal_report.py",
+      "sha256_original": "39ad7202d4d8725718ce7a12b4ac1e972c3874b45ec9f2c3132e9dac8c408cdb"
+    },
+    {
+      "path": "implementation/medrag/scripts/44_run_causal_patching_new_head.py",
+      "source": "medrag/scripts/44_run_causal_patching_new_head.py",
+      "sha256_original": "c3e005ef54786a5da46dfdd1946907280a19101e8ff345b369e8225057bfa7ef"
+    },
+    {
+      "path": "implementation/medrag/scripts/45_run_medqa_eval_new_head.py",
+      "source": "medrag/scripts/45_run_medqa_eval_new_head.py",
+      "sha256_original": "f497371296f47cba23f3c58f41d15e2e61b48cff297fe226642129074587c750"
+    },
+    {
+      "path": "implementation/medrag/scripts/46_update_medqa_localization_report.py",
+      "source": "medrag/scripts/46_update_medqa_localization_report.py",
+      "sha256_original": "139b4f62b0f4bc5f14582d343d39025f33efebeaf2e6b2aeee911fa9760760d8"
+    },
+    {
+      "path": "implementation/medrag/scripts/47_run_medqa_joint_patching.py",
+      "source": "medrag/scripts/47_run_medqa_joint_patching.py",
+      "sha256_original": "db4b05867c2cb228b3ba9417652d0e7c3dd936fae2b876c2e7fbefd2fdf58842"
+    },
+    {
+      "path": "implementation/medrag/scripts/48_run_medqa_localization_mistral.py",
+      "source": "medrag/scripts/48_run_medqa_localization_mistral.py",
+      "sha256_original": "2c28a3a6c2d20f6f3a1e7194ecad1855ff6ef7dc8e4849f1fb97ee74d8abdc01"
+    },
+    {
+      "path": "implementation/medrag/scripts/48_update_medqa_joint_report.py",
+      "source": "medrag/scripts/48_update_medqa_joint_report.py",
+      "sha256_original": "0b989e8f154691562bf6156f686e87323c98d88b7d811dc8cf2fee95ccc806b5"
+    },
+    {
+      "path": "implementation/medrag/scripts/49_run_medqa_joint_patching_disruption.py",
+      "source": "medrag/scripts/49_run_medqa_joint_patching_disruption.py",
+      "sha256_original": "84fad6a434870126d554b870b421132d2435da1a9615d50ebab5de8f476121ba"
+    },
+    {
+      "path": "implementation/medrag/scripts/49_run_medqa_localization_qwen.py",
+      "source": "medrag/scripts/49_run_medqa_localization_qwen.py",
+      "sha256_original": "44b7ea68ef0687f4bf5fddcf0dae76c9d65be34a47f32b51d6fd0626dc51200c"
+    },
+    {
+      "path": "implementation/medrag/scripts/50_run_medqa_intervention_mistral.py",
+      "source": "medrag/scripts/50_run_medqa_intervention_mistral.py",
+      "sha256_original": "d6f7c5851a24a9af89241076a205fb38ba83705fd863b0727d3a72ca0be5777b"
+    },
+    {
+      "path": "implementation/medrag/scripts/50_update_medqa_joint_disruption_report.py",
+      "source": "medrag/scripts/50_update_medqa_joint_disruption_report.py",
+      "sha256_original": "7c019a23be1832ffeadbcd280bdc81ede11f8ff85b1ae3266f27df14a45990fd"
+    },
+    {
+      "path": "implementation/medrag/scripts/51_run_medqa_intervention_qwen.py",
+      "source": "medrag/scripts/51_run_medqa_intervention_qwen.py",
+      "sha256_original": "e0cded2c24ca65831cdf16fcdfc6a35bf72726e627d2c13700c7fa2648dca9cc"
+    },
+    {
+      "path": "implementation/medrag/scripts/51_validate_iti_truthfulqa.py",
+      "source": "medrag/scripts/51_validate_iti_truthfulqa.py",
+      "sha256_original": "b86a1d14a5c56815cd4526c6e34a8f101046f014102424270c446db1cb71bd40"
+    },
+    {
+      "path": "implementation/medrag/scripts/52_run_medqa_iti.py",
+      "source": "medrag/scripts/52_run_medqa_iti.py",
+      "sha256_original": "de66d9a6a945b4d1dc995d58fd555d9612d2843d8f64de864579d93361e8df2d"
+    },
+    {
+      "path": "implementation/medrag/scripts/53_plot_medqa_iti.py",
+      "source": "medrag/scripts/53_plot_medqa_iti.py",
+      "sha256_original": "a63a92a1bfa7c03275fbde8338f1811e8f1b8e475663b0fe2ae8c9d9b64ae5b6"
+    },
+    {
+      "path": "implementation/medrag/scripts/56_clasheval_step_diagnostic.py",
+      "source": "medrag/scripts/56_clasheval_step_diagnostic.py",
+      "sha256_original": "3a3e1865d4819b4e9937569d31ede5b1baade932e977c7d834a024a878cb1031"
+    },
+    {
+      "path": "implementation/medrag/scripts/57_clasheval_killtest.py",
+      "source": "medrag/scripts/57_clasheval_killtest.py",
+      "sha256_original": "9d8a48a881558a66757dc5f60cf09204c7afe1dcfbf49f5f903c4dc7fe79f1ad"
+    },
+    {
+      "path": "implementation/medrag/scripts/58_plot_clasheval_killtest.py",
+      "source": "medrag/scripts/58_plot_clasheval_killtest.py",
+      "sha256_original": "777025072493ebb252a1724b64894904742d490c4bc45e83e66f3882111cee49"
+    },
+    {
+      "path": "implementation/medrag/scripts/59_run_clasheval_intervention_v3.py",
+      "source": "medrag/scripts/59_run_clasheval_intervention_v3.py",
+      "sha256_original": "7d9755a0244d44564a091f389545d241029bf66c1e84e6ab5b28a4cc3ea0d1f1"
+    },
+    {
+      "path": "implementation/medrag/scripts/60_plot_clasheval_intervention_v3.py",
+      "source": "medrag/scripts/60_plot_clasheval_intervention_v3.py",
+      "sha256_original": "844562348b614aeee48b1e28fc77814a3bc92cc65b9d8c974df5c544734bcf1a"
+    },
+    {
+      "path": "implementation/medrag/scripts/61_build_cross_model_section.py",
+      "source": "medrag/scripts/61_build_cross_model_section.py",
+      "sha256_original": "358b67300f7cfbf0aee5aa2f840a5bfe836d469d981f4a6fdaf76d1c1d3be7ad"
+    },
+    {
+      "path": "implementation/medrag/scripts/62_run_deployment_characterization.py",
+      "source": "medrag/scripts/62_run_deployment_characterization.py",
+      "sha256_original": "819e23e078bed08e7e69c815fcb49433f5fb87db1333fae3fd51803636136950"
+    },
+    {
+      "path": "implementation/medrag/scripts/63_run_selective_prediction.py",
+      "source": "medrag/scripts/63_run_selective_prediction.py",
+      "sha256_original": "64f6f3a2cc1d86d40046c5dd5c791a2833cb10c2dd8563d535f9dd495284af75"
+    },
+    {
+      "path": "implementation/medrag/scripts/67_run_medqa_cross_model_pilot.py",
+      "source": "medrag/scripts/67_run_medqa_cross_model_pilot.py",
+      "sha256_original": "bd07c6d30d1df739c1e27381f591d8f649ac6d6ae24200d33de3e5d4ebfa5030"
+    },
+    {
+      "path": "implementation/medrag/scripts/68_run_medqa_cross_model_full.py",
+      "source": "medrag/scripts/68_run_medqa_cross_model_full.py",
+      "sha256_original": "8657a980a5ceea3ee19c8b3f21d1fdefef04f94aa6d918e619b8501a740ad4d1"
+    },
+    {
+      "path": "implementation/medrag/scripts/69_plot_medqa_cross_model_results.py",
+      "source": "medrag/scripts/69_plot_medqa_cross_model_results.py",
+      "sha256_original": "7e5c41185515301a64d08094c037372d7923dcb4e9046d7f1a57b5837a1029d7"
+    },
+    {
+      "path": "implementation/medrag/scripts/70_localize_counterfact_cross_model.py",
+      "source": "medrag/scripts/70_localize_counterfact_cross_model.py",
+      "sha256_original": "42efddf7208d1ffb7b7aee7536a97da816005f3772b4d9433547685bd1c50e3b"
+    },
+    {
+      "path": "implementation/medrag/scripts/71_run_counterfact_cross_model_pilot.py",
+      "source": "medrag/scripts/71_run_counterfact_cross_model_pilot.py",
+      "sha256_original": "052d134420c23dd1829953483c1e681fa353c04d88bfc0b976f4bd404cd20eee"
+    },
+    {
+      "path": "implementation/medrag/scripts/72_run_counterfact_cross_model_full.py",
+      "source": "medrag/scripts/72_run_counterfact_cross_model_full.py",
+      "sha256_original": "99d16469b1142febcebb60f56d2e54d91518d450e8cb92bff09844e4ce1770e6"
+    },
+    {
+      "path": "implementation/medrag/scripts/73_plot_counterfact_cross_model_results.py",
+      "source": "medrag/scripts/73_plot_counterfact_cross_model_results.py",
+      "sha256_original": "2810db5c42c6a4430599663d0edfd492247661d513a98f25c43f1309b9cbc722"
+    },
+    {
+      "path": "implementation/medrag/scripts/74_run_medqa_cross_model_c45.py",
+      "source": "medrag/scripts/74_run_medqa_cross_model_c45.py",
+      "sha256_original": "fd421fa7c6a8572c191b15e7f4804a1d5368d95db832c6bd9d2db3690fc8162e"
+    },
+    {
+      "path": "implementation/medrag/scripts/75_plot_medqa_cross_model_c45.py",
+      "source": "medrag/scripts/75_plot_medqa_cross_model_c45.py",
+      "sha256_original": "ba0c95f1237c44991f43ca492d1861dfbec7b6e21e85b7ade5826d20ff8468bb"
+    },
+    {
+      "path": "implementation/medrag/scripts/76_run_counterfact_cross_model_c45.py",
+      "source": "medrag/scripts/76_run_counterfact_cross_model_c45.py",
+      "sha256_original": "88c916324dd3ad73f10c889653400495acfe9ea5067ce1c2a5db93fa4b88af69"
+    },
+    {
+      "path": "implementation/medrag/scripts/77_plot_counterfact_cross_model_c45.py",
+      "source": "medrag/scripts/77_plot_counterfact_cross_model_c45.py",
+      "sha256_original": "8f8c9d96046cce47b855768c6b00375d94c5bee517016f897f99b6547143d357"
+    },
+    {
+      "path": "implementation/medrag/scripts/78_run_counterfact_generated_p_pilot.py",
+      "source": "medrag/scripts/78_run_counterfact_generated_p_pilot.py",
+      "sha256_original": "fecb2ce5e164aea6b36e45d7a7bb6b28d8cef412d848de401e9e2dbd26bd5d61"
+    },
+    {
+      "path": "implementation/medrag/scripts/79_run_counterfact_premise_check_v2.py",
+      "source": "medrag/scripts/79_run_counterfact_premise_check_v2.py",
+      "sha256_original": "d32de5a6efb625f22f44b69c9df9a9423a304903d6deab3e3197b6c6cda73d22"
+    },
+    {
+      "path": "implementation/medrag/scripts/80_run_counterfact_belief_stratification.py",
+      "source": "medrag/scripts/80_run_counterfact_belief_stratification.py",
+      "sha256_original": "8c7c92731410689acde84ceda42c2fc497e568d5f63623deb6a3e302b505bbd7"
+    },
+    {
+      "path": "implementation/medrag/scripts/81_run_premise_check_full.py",
+      "source": "medrag/scripts/81_run_premise_check_full.py",
+      "sha256_original": "42525cde04a121c59092489ad32ee063972511e8aba0b2c31ededb36c85a750a"
+    },
+    {
+      "path": "implementation/medrag/scripts/82_run_stratification_full.py",
+      "source": "medrag/scripts/82_run_stratification_full.py",
+      "sha256_original": "0df37bc21f7f046bda5205aba439d19fdf1e08036ab5285d7e9a97aaf3200abf"
+    },
+    {
+      "path": "implementation/medrag/scripts/83_run_matched_head_controls.py",
+      "source": "medrag/scripts/83_run_matched_head_controls.py",
+      "sha256_original": "b9d0d4d2336a8aa46c0eb2358cd4ae16763febbd40b8ae0010247f9bf6642fed"
+    },
+    {
+      "path": "implementation/medrag/scripts/84_compare_disruption_discrepancy.py",
+      "source": "medrag/scripts/84_compare_disruption_discrepancy.py",
+      "sha256_original": "136c3f5419de59685a9b4f56a6f0290ea568e76c90da72e82bd7b87edd572582"
+    },
+    {
+      "path": "implementation/medrag/scripts/paired_bootstrap_subthreshold.py",
+      "source": "medrag/scripts/paired_bootstrap_subthreshold.py",
+      "sha256_original": "25a741888574d828965326ad1cb03bf7e4e1fb10550e47a314dfffadfcf020f7"
+    },
+    {
+      "path": "implementation/medrag/scripts/plot_dose_response_v4.py",
+      "source": "medrag/scripts/plot_dose_response_v4.py",
+      "sha256_original": "1dae9f029a8417cd0bbdecd8cd8003adfd2cb306829e980cc042cf2287457283"
+    },
+    {
+      "path": "implementation/medrag/scripts/verify_conflict_dataset.py",
+      "source": "medrag/scripts/verify_conflict_dataset.py",
+      "sha256_original": "908022e02d9316f7fc1241e27077614351b0f12c0870be3f50857a730be9d714"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/__init__.py",
+      "source": "Evidence_aware/src/evidence_aware/__init__.py",
+      "sha256_original": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/ag_erha/__init__.py",
+      "source": "Evidence_aware/src/evidence_aware/ag_erha/__init__.py",
+      "sha256_original": "35bb9eafebb58a5ab05fbce9d54c84793fc66070dec07a868d56f952844ddcf7"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/ag_erha/gating.py",
+      "source": "Evidence_aware/src/evidence_aware/ag_erha/gating.py",
+      "sha256_original": "bf3e2056e6e8f0eef5e4b211fb118b634e620e89914dbc93dfe5e0b23719c2b5"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/ag_erha/pipeline.py",
+      "source": "Evidence_aware/src/evidence_aware/ag_erha/pipeline.py",
+      "sha256_original": "a35a32e09c6df43c8550ed9d39faad3add4fb8fe5c337d776fdb00caabc0dcac"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/ag_erha/track_a.py",
+      "source": "Evidence_aware/src/evidence_aware/ag_erha/track_a.py",
+      "sha256_original": "2c32f732f3d59688d3a36d379666f377c8abedd5c3dc0d8824102683e29a8a2d"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/ag_erha/track_b.py",
+      "source": "Evidence_aware/src/evidence_aware/ag_erha/track_b.py",
+      "sha256_original": "38296855a7c8dd52c64d08cb67dc9e1fd4d8a60757ae716b4c7db5d8e0625595"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/ag_erha/utils.py",
+      "source": "Evidence_aware/src/evidence_aware/ag_erha/utils.py",
+      "sha256_original": "d59b130eb4f19d9c9b216b9d31ddaf81face29b44292f1b6cc5561ad052ee3a4"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/dataset/__init__.py",
+      "source": "Evidence_aware/src/evidence_aware/dataset/__init__.py",
+      "sha256_original": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/dataset/counterfact.py",
+      "source": "Evidence_aware/src/evidence_aware/dataset/counterfact.py",
+      "sha256_original": "17b407c01396ac52b91c5e5bf2ef965353484be2919a2e55d6c0929ec9f95f3b"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/generalization/__init__.py",
+      "source": "Evidence_aware/src/evidence_aware/generalization/__init__.py",
+      "sha256_original": "064541cbd777a48ecc19bbb0249760c8d88d748147fd719540afe137b8a9e5ea"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/generalization/pipeline.py",
+      "source": "Evidence_aware/src/evidence_aware/generalization/pipeline.py",
+      "sha256_original": "6364a14759a90d53d02fe1b135126eee497789673aed903500732a6bf1c69cc6"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/mg_erha/__init__.py",
+      "source": "Evidence_aware/src/evidence_aware/mg_erha/__init__.py",
+      "sha256_original": "cd09b3222b09ea8ba96fbb1827df70569e20b294c162dac6588a84c04cb99519"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/mg_erha/gating.py",
+      "source": "Evidence_aware/src/evidence_aware/mg_erha/gating.py",
+      "sha256_original": "9617c0b2e32b681f956935ce53c06357c5f5763bc5e63a438b19651dff1f70f5"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/mg_erha/pipeline.py",
+      "source": "Evidence_aware/src/evidence_aware/mg_erha/pipeline.py",
+      "sha256_original": "c8b5c35f5a33f3d49df0b3d8952385e79f71f804bde3d533122adab30864b945"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/mistral_multi_head/__init__.py",
+      "source": "Evidence_aware/src/evidence_aware/mistral_multi_head/__init__.py",
+      "sha256_original": "7dedcb917dd05c5281f75d55c6c66d6c1dcbf22933fef4a5bc7040ed25a5c43b"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/mistral_multi_head/pipeline.py",
+      "source": "Evidence_aware/src/evidence_aware/mistral_multi_head/pipeline.py",
+      "sha256_original": "45787950f96b227f75d4faa79f3c8a928f2e6a628b6cec249a9aa66649e95b42"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/mistral_steering/__init__.py",
+      "source": "Evidence_aware/src/evidence_aware/mistral_steering/__init__.py",
+      "sha256_original": "18228887ccd742a75534440b16d4ffb5d1079778f086cc51233364d6124d525f"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/mistral_steering/final_layer_steering.py",
+      "source": "Evidence_aware/src/evidence_aware/mistral_steering/final_layer_steering.py",
+      "sha256_original": "a521814785ce1089fcde4b3b24c5baaf38014780080db8b252bcb63a11287f1d"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/mistral_steering/pipeline.py",
+      "source": "Evidence_aware/src/evidence_aware/mistral_steering/pipeline.py",
+      "sha256_original": "bd5e02a4bf595b7b12d38e52d32553ed55722f842a84724270ff9aa3106156b4"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/multi_head/__init__.py",
+      "source": "Evidence_aware/src/evidence_aware/multi_head/__init__.py",
+      "sha256_original": "da5e3f79eb69dfa4947ac832ea5ca1e73b7389be7d9c3e70abfb38bf876521e9"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/multi_head/pipeline.py",
+      "source": "Evidence_aware/src/evidence_aware/multi_head/pipeline.py",
+      "sha256_original": "a1b8eb2de037bb3517fcacba1470f1ea37ba5cab68e47d9e914d5d9a52932771"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/phase2/__init__.py",
+      "source": "Evidence_aware/src/evidence_aware/phase2/__init__.py",
+      "sha256_original": "913fb126b3ed17eec97237538a8beda34cd71213c7b2924d99bf546b710be92a"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/phase2/common.py",
+      "source": "Evidence_aware/src/evidence_aware/phase2/common.py",
+      "sha256_original": "4305a340643400eade24994ab465db60073c30772c221582cff7fd1dfc046676"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/phase2/data.py",
+      "source": "Evidence_aware/src/evidence_aware/phase2/data.py",
+      "sha256_original": "73f13b7968c3be4d5381fc2ad0871d1045a081d5cee9d5bce4caf1e16f7c5ff7"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/phase2/evaluation.py",
+      "source": "Evidence_aware/src/evidence_aware/phase2/evaluation.py",
+      "sha256_original": "fd648323238c9ef0161793e0dfe006c6472b9378941a4ae3e8116b8c52b5757c"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/phase2/modeling.py",
+      "source": "Evidence_aware/src/evidence_aware/phase2/modeling.py",
+      "sha256_original": "6f8904a6f06ba8fb7120840366edb39f405e2286062e49ea36afb1a1be950ad7"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/phase2/pipeline.py",
+      "source": "Evidence_aware/src/evidence_aware/phase2/pipeline.py",
+      "sha256_original": "b6f25d5a203be9ea68003281359504bb6d4de1aada87ca98ed6140fc32d20ab1"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/phase2/validation.py",
+      "source": "Evidence_aware/src/evidence_aware/phase2/validation.py",
+      "sha256_original": "d23a3a0c4f88d34770ebcf7fb17eaee427706842880a2d0f5c8412b68e452991"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/true_multi_head/__init__.py",
+      "source": "Evidence_aware/src/evidence_aware/true_multi_head/__init__.py",
+      "sha256_original": "1c0af63ebf4e6c01461d6e61db550f04653bfe67e3a995ddf323a04d2cb994e2"
+    },
+    {
+      "path": "implementation/Evidence_aware/src/evidence_aware/true_multi_head/pipeline.py",
+      "source": "Evidence_aware/src/evidence_aware/true_multi_head/pipeline.py",
+      "sha256_original": "b285923d334f38185b7bee6bf9a73ae5674f8cec47839c7ddbfb1ed3fe6c13bf"
+    },
+    {
+      "path": "implementation/Evidence_aware/scripts/00_prepare_data_cache.py",
+      "source": "Evidence_aware/scripts/00_prepare_data_cache.py",
+      "sha256_original": "352e83e0b0ae681ee764e352f70b9585ab99d4bc59497ab23d71d116a9e8eb7e"
+    },
+    {
+      "path": "implementation/Evidence_aware/scripts/01_phase1_diagnostics.py",
+      "source": "Evidence_aware/scripts/01_phase1_diagnostics.py",
+      "sha256_original": "cf78ac1ee357c6d655a2df182be2ec7689be41689ce4b09fe41b8158f967c8d2"
+    },
+    {
+      "path": "implementation/Evidence_aware/scripts/02_run_phase2.py",
+      "source": "Evidence_aware/scripts/02_run_phase2.py",
+      "sha256_original": "106780f5f9e6d0a3466f8409351a2db394a6ac4d9031e036be3559f973e8c0a8"
+    },
+    {
+      "path": "implementation/Evidence_aware/scripts/03_run_ag_erha.py",
+      "source": "Evidence_aware/scripts/03_run_ag_erha.py",
+      "sha256_original": "6a4191f5a61568d95f0a0b38b7b2b64e80e680057b964501015958385e7f58cc"
+    },
+    {
+      "path": "implementation/Evidence_aware/scripts/03a_run_ag_track_a.py",
+      "source": "Evidence_aware/scripts/03a_run_ag_track_a.py",
+      "sha256_original": "602e7955c1cf0e98baff285e0b55222279cd9159f7e7e39382fb2fc613cc3573"
+    },
+    {
+      "path": "implementation/Evidence_aware/scripts/03b_run_ag_track_b.py",
+      "source": "Evidence_aware/scripts/03b_run_ag_track_b.py",
+      "sha256_original": "e438fc632021dec9f24b5036ac2194ee773a9d763e84d78660471d2efc5e7668"
+    },
+    {
+      "path": "implementation/Evidence_aware/scripts/04_run_mg_erha.py",
+      "source": "Evidence_aware/scripts/04_run_mg_erha.py",
+      "sha256_original": "4a140f23bd29b4b1a3e9260e6fbab4e5cc31d571b5e18f176c4586fc6c1d6b86"
+    },
+    {
+      "path": "implementation/Evidence_aware/scripts/05_run_generalization.py",
+      "source": "Evidence_aware/scripts/05_run_generalization.py",
+      "sha256_original": "ea2ebc1a9850727f6bf41a1226999fdd5bb6b0aa08e6af1cbd3840a1728264f0"
+    },
+    {
+      "path": "implementation/Evidence_aware/scripts/06_run_multi_head.py",
+      "source": "Evidence_aware/scripts/06_run_multi_head.py",
+      "sha256_original": "ce84ae06539b5376d95434ced5f88a03c214818b698bebff06ff2a8936a3f074"
+    },
+    {
+      "path": "implementation/Evidence_aware/scripts/07_extract_mistral_target_layers.py",
+      "source": "Evidence_aware/scripts/07_extract_mistral_target_layers.py",
+      "sha256_original": "ea1cbf1cc96f26c56bd3186ac64453ede73da8623a1b143b956d3e74381a7f41"
+    },
+    {
+      "path": "implementation/Evidence_aware/scripts/08_run_mistral_multi_head.py",
+      "source": "Evidence_aware/scripts/08_run_mistral_multi_head.py",
+      "sha256_original": "aeaf018845d25629d8edb560434300d7204ae9a40a5bfbbdbd638ed0f67d3265"
+    },
+    {
+      "path": "implementation/Evidence_aware/scripts/09_run_true_multi_head.py",
+      "source": "Evidence_aware/scripts/09_run_true_multi_head.py",
+      "sha256_original": "00ce5b1a9301451bd3b167caea1d4441108ad4bed380473892ec0679551c6b54"
+    },
+    {
+      "path": "implementation/Evidence_aware/scripts/10_build_paper_plots.py",
+      "source": "Evidence_aware/scripts/10_build_paper_plots.py",
+      "sha256_original": "6fbdc35d6e6ccb7e567693723e577a9abc68d64d881c9457021fc5a17e33eee8"
+    },
+    {
+      "path": "implementation/Evidence_aware/scripts/11_mistral_steering_gain_check.py",
+      "source": "Evidence_aware/scripts/11_mistral_steering_gain_check.py",
+      "sha256_original": "87ab92e2c1b19e0543bbec1c7e7e2bdeedc63f68e45e8ff9573305bc54c2919b"
+    },
+    {
+      "path": "implementation/Evidence_aware/scripts/12_run_mistral_steering.py",
+      "source": "Evidence_aware/scripts/12_run_mistral_steering.py",
+      "sha256_original": "77093da300868764ff89d26d3e839f225e826ff8a768a340b656353e1730eba7"
+    },
+    {
+      "path": "implementation/Evidence_aware/scripts/19_run_mistral_final_layer_steering.py",
+      "source": "Evidence_aware/scripts/19_run_mistral_final_layer_steering.py",
+      "sha256_original": "641f3a456bca4edc48d210ea48b320b11ce2e6063c69a1321611e8095445bb0f"
+    },
+    {
+      "path": "implementation/conflictqa/src/conflictqa_pipeline/__init__.py",
+      "source": "conflictqa/src/conflictqa_pipeline/__init__.py",
+      "sha256_original": "5f8d431e4839bbfb538a2d03edeca96e61b3553159d569eed5411bca5f58c297"
+    },
+    {
+      "path": "implementation/conflictqa/src/conflictqa_pipeline/utils.py",
+      "source": "conflictqa/src/conflictqa_pipeline/utils.py",
+      "sha256_original": "4afdbc1fc398d9df18e094621cae8b58dc21f4ee0767befc4d6b8fc066cac5a6"
+    },
+    {
+      "path": "implementation/conflictqa/scripts/62_build_popqa_conflict.py",
+      "source": "conflictqa/scripts/62_build_popqa_conflict.py",
+      "sha256_original": "39d44b85c3b5717f64d7dcf76dedc67cb9d0401607486f5f7f442f1ab5e7a4d7"
+    },
+    {
+      "path": "implementation/conflictqa/scripts/62b_regenerate_contexts.py",
+      "source": "conflictqa/scripts/62b_regenerate_contexts.py",
+      "sha256_original": "4bb34327e795d5842aa05fb22a31c9a9bc4b8c4a8aabb2c33b0ef23434b7835f"
+    },
+    {
+      "path": "implementation/conflictqa/scripts/63_run_popqa_intervention.py",
+      "source": "conflictqa/scripts/63_run_popqa_intervention.py",
+      "sha256_original": "e603683cdeb2c30336e27beb9a4f1c0ae47755fa69aa9c34eaef1436128f8d69"
+    },
+    {
+      "path": "implementation/conflictqa/scripts/64_plot_popqa_results.py",
+      "source": "conflictqa/scripts/64_plot_popqa_results.py",
+      "sha256_original": "7b737967d537d242e82192c1ace51d550c05e007b5739072170191fb2783cc14"
+    },
+    {
+      "path": "implementation/conflictqa/scripts/65_analyze_popqa_results.py",
+      "source": "conflictqa/scripts/65_analyze_popqa_results.py",
+      "sha256_original": "b1177eeb54edefc42981aec9055b7937bad0f5d63be6cebbf40e75a77890028b"
+    },
+    {
+      "path": "implementation/conflictqa/scripts/66_run_popqa_intervention_mistral.py",
+      "source": "conflictqa/scripts/66_run_popqa_intervention_mistral.py",
+      "sha256_original": "140c300cc8dd4b137b2e41892a2872853f44ab30b0dd92fbe40879d4c3479fb5"
+    },
+    {
+      "path": "implementation/conflictqa/scripts/67_rebuild_popqa_c2_conflicts.py",
+      "source": "conflictqa/scripts/67_rebuild_popqa_c2_conflicts.py",
+      "sha256_original": "8e9edce5246fd91c065301dfaf068e9e100a3c80a029a6b4abd6541fe5fa1531"
+    },
+    {
+      "path": "implementation/conflictqa/scripts/68_supplement_popqa_for_pilot.py",
+      "source": "conflictqa/scripts/68_supplement_popqa_for_pilot.py",
+      "sha256_original": "d9a911a7f3f2b7c30749afef3a61810b71ae3aace5d511fdab4b6c318e81dc95"
+    }
+  ]
+}

@@ -1,0 +1,898 @@
+{
+  "counterfact.prepare": {
+    "family": "Evidence_aware",
+    "script": "00_prepare_data_cache.py",
+    "description": "Download and normalize CounterFact (text only)",
+    "args": {
+      "cache_path": "data/counterfact_solvent.json"
+    },
+    "input_args": [],
+    "scope": "Prepares new text-only inputs. Active model tokenization happens at inference."
+  },
+  "counterfact.trace": {
+    "family": "Evidence_aware",
+    "script": "01_phase1_diagnostics.py",
+    "description": "Per-head decomposition and layer margins",
+    "args": {
+      "seed": 42,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "max_examples": 500,
+      "target_per_class": 250,
+      "cache_path": "data/counterfact_solvent.json"
+    },
+    "input_args": [
+      "cache_path"
+    ]
+  },
+  "counterfact.baseline": {
+    "family": "Evidence_aware",
+    "script": "02_run_phase2.py",
+    "description": "Disjoint validation and 2,000-item baseline",
+    "args": {
+      "seed": 42,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "eval_size": 2000,
+      "min_eval_examples": 2000,
+      "run_dola": 0,
+      "run_ablation": 0,
+      "cache_path": "data/counterfact_solvent.json",
+      "phase1_aggregate_path": "results/phase1_diagnostics/aggregate_statistics.json",
+      "phase1_traces_path": "results/phase1_diagnostics/per_example_traces.jsonl"
+    },
+    "input_args": [
+      "cache_path",
+      "phase1_aggregate_path",
+      "phase1_traces_path"
+    ]
+  },
+  "counterfact.ov": {
+    "family": "Evidence_aware",
+    "script": "09_run_true_multi_head.py",
+    "description": "Gated OV steering and gain diagnostics",
+    "args": {
+      "seed": 42,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "phase1_ld_path": "results/phase1_diagnostics/per_example_traces.jsonl",
+      "run_experiment_a": 0,
+      "run_experiment_b": 1,
+      "exp_b_force_full_grid": 1,
+      "exp_b_alpha_grid": "1.0",
+      "exp_b_tau_grid": "-1.0,0.0,0.5",
+      "exp_b_lambda_clip_values": "10.0,20.0",
+      "out_dir": "results/true_multi_head",
+      "cache_path": "data/counterfact_solvent.json",
+      "phase2_main_eval_dir": "results/phase2/main_eval"
+    },
+    "input_args": [
+      "cache_path",
+      "phase1_ld_path",
+      "phase2_main_eval_dir"
+    ]
+  },
+  "medqa.prepare": {
+    "family": "medrag",
+    "script": "22_build_medqa_conflict.py",
+    "description": "Construct model-filtered MedQA conflict inputs",
+    "args": {
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "use_medrag_retrieval": 0,
+      "n_target": 500
+    },
+    "input_args": []
+  },
+  "medqa.preflight": {
+    "family": "medrag",
+    "script": "29_preflight_medqa_v3.py",
+    "description": "Prepare condition caches and audit template",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "conflict_path": "data/medqa_conflict_500.jsonl"
+    },
+    "input_args": [
+      "conflict_path",
+      "label_audit_path"
+    ]
+  },
+  "medqa.decomposition": {
+    "family": "medrag",
+    "script": "30_run_medqa_decomposition.py",
+    "description": "Label/content and promotion/suppression grid",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "conflict_path": "data/medqa_conflict_500.jsonl"
+    },
+    "input_args": [
+      "conflict_path",
+      "label_audit_path",
+      "matched_subset_path"
+    ]
+  },
+  "medqa.sweep": {
+    "family": "medrag",
+    "script": "31_run_medqa_pr_sweep.py",
+    "description": "Pilot threshold and representation sweep",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "best_cell_path": "results/medqa_final_v3/decomposition/best_cell.json",
+      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "conflict_path": "data/medqa_conflict_500.jsonl"
+    },
+    "input_args": [
+      "best_cell_path",
+      "conflict_path",
+      "label_audit_path",
+      "matched_subset_path"
+    ]
+  },
+  "medqa.killtest": {
+    "family": "medrag",
+    "script": "32_run_medqa_killtest.py",
+    "description": "Prompt controls and gated intervention",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "best_cell_path": "results/medqa_final_v3/decomposition/best_cell.json",
+      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "headline_path": "results/medqa_final_v3/pr_sweep/headline.json",
+      "conflict_path": "data/medqa_conflict_500.jsonl"
+    },
+    "input_args": [
+      "best_cell_path",
+      "conflict_path",
+      "headline_path",
+      "label_audit_path",
+      "matched_subset_path"
+    ]
+  },
+  "medqa.headline": {
+    "family": "medrag",
+    "script": "34_run_medqa_balanced_headline.py",
+    "description": "H1-H4 verification including suppression headline",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "tau_margin": 2.0,
+      "bootstrap_space": "E_letter",
+      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "headline_path": "results/medqa_final_v3/pr_sweep/headline.json",
+      "conflict_path": "data/medqa_conflict_500.jsonl"
+    },
+    "input_args": [
+      "conflict_path",
+      "headline_path",
+      "label_audit_path",
+      "matched_subset_path"
+    ]
+  },
+  "medqa.localize": {
+    "family": "medrag",
+    "script": "43_run_medqa_localization.py",
+    "description": "MedQA-specific per-head localization",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "conflict_path": "data/medqa_conflict_500.jsonl",
+      "h4_results_path": "results/medqa_final_v3/consolidation/headline_verify/H4/results.jsonl"
+    },
+    "input_args": [
+      "conflict_path",
+      "h4_results_path",
+      "label_audit_path",
+      "matched_subset_path"
+    ]
+  },
+  "medqa.pairs": {
+    "family": "medrag",
+    "script": "40_run_causal_patching.py",
+    "description": "Build patching pairs and single-head controls",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "conflict_path": "data/medqa_conflict_500.jsonl",
+      "h4_results_path": "results/medqa_final_v3/consolidation/headline_verify/H4/results.jsonl"
+    },
+    "input_args": [
+      "conflict_path",
+      "h4_results_path",
+      "label_audit_path",
+      "matched_subset_path"
+    ]
+  },
+  "medqa.joint": {
+    "family": "medrag",
+    "script": "47_run_medqa_joint_patching.py",
+    "description": "Joint top-five causal patching",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "conflict_path": "data/medqa_conflict_500.jsonl",
+      "h4_results_path": "results/medqa_final_v3/consolidation/headline_verify/H4/results.jsonl",
+      "head_importance_path": "results/medqa_final_v3/localization_v2/head_importance.json",
+      "l27_summary_path": "results/medqa_final_v3/causal/patching/summary.json"
+    },
+    "input_args": [
+      "conflict_path",
+      "h4_results_path",
+      "head_importance_path",
+      "l27_summary_path",
+      "label_audit_path",
+      "matched_subset_path"
+    ]
+  },
+  "medqa.matched-controls": {
+    "family": "medrag",
+    "script": "83_run_matched_head_controls.py",
+    "description": "Matched random/attribution/disruption controls",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "conflict_path": "data/medqa_conflict_500.jsonl",
+      "h4_results_path": "results/medqa_final_v3/consolidation/headline_verify/H4/results.jsonl",
+      "head_importance_path": "results/medqa_final_v3/localization_v2/head_importance.json"
+    },
+    "input_args": [
+      "conflict_path",
+      "h4_results_path",
+      "head_importance_path",
+      "label_audit_path",
+      "matched_subset_path"
+    ]
+  },
+  "medqa.subthreshold": {
+    "family": "medrag",
+    "script": "33_run_medqa_decomposition_subthreshold.py",
+    "description": "Subthreshold dose-response analysis",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "conflict_path": "data/medqa_conflict_500.jsonl"
+    },
+    "input_args": [
+      "conflict_path",
+      "label_audit_path",
+      "matched_subset_path"
+    ]
+  },
+  "popqa.prepare": {
+    "family": "conflictqa",
+    "script": "62_build_popqa_conflict.py",
+    "description": "Prepare PopQA candidates from official raw TSV",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "target_items": 500,
+      "min_first_token_prob": 0.65,
+      "popqa_path": "data/raw/popQA.tsv",
+      "candidates_path": "data/popqa_conflict_candidates.jsonl"
+    },
+    "input_args": [
+      "candidates_path",
+      "popqa_path"
+    ]
+  },
+  "popqa.rebuild": {
+    "family": "conflictqa",
+    "script": "67_rebuild_popqa_c2_conflicts.py",
+    "description": "Model-specific C2-resistant subset",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "target_items": 0,
+      "candidates_path": "data/popqa_conflict_candidates_mistral.jsonl"
+    },
+    "input_args": [
+      "candidates_path"
+    ]
+  },
+  "popqa.balanced": {
+    "family": "conflictqa",
+    "script": "63_run_popqa_intervention.py",
+    "description": "Llama balanced alias-promotion full evaluation",
+    "args": {
+      "seed": 1,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "input_path": "data/popqa_conflict_3141_natural.jsonl",
+      "results_dir": "results/popqa/full_3141_balanced",
+      "pilot_examples": 300,
+      "max_items": 0,
+      "intervention_mode": "balanced",
+      "evidence_token_source": "aliases",
+      "lambda_values": "5.0",
+      "lambda_pos_values": "2.5,5.0,7.5,10.0",
+      "fixed_tau": 0.0,
+      "fixed_lambda": 5.0
+    },
+    "input_args": [
+      "input_path"
+    ]
+  },
+  "popqa.suppression": {
+    "family": "conflictqa",
+    "script": "63_run_popqa_intervention.py",
+    "description": "Suppression-only ablation with separate outputs",
+    "args": {
+      "seed": 1,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "input_path": "data/popqa_conflict_3141_natural.jsonl",
+      "results_dir": "results/popqa/full_3141_suppression",
+      "pilot_examples": 300,
+      "max_items": 0,
+      "intervention_mode": "suppression",
+      "evidence_token_source": "aliases",
+      "lambda_values": "5.0",
+      "fixed_tau": 0.0,
+      "fixed_lambda": 5.0
+    },
+    "input_args": [
+      "input_path"
+    ]
+  },
+  "popqa.plot": {
+    "family": "conflictqa",
+    "script": "64_plot_popqa_results.py",
+    "description": "Render plots from regenerated local outputs",
+    "args": {
+      "results_dir": "results/popqa/full_3141_balanced",
+      "figures_dir": "results/popqa/full_3141_balanced/figures"
+    },
+    "input_args": [
+      "results_dir"
+    ]
+  },
+  "popqa.analyze": {
+    "family": "conflictqa",
+    "script": "65_analyze_popqa_results.py",
+    "description": "Stratification and paired comparisons from outputs",
+    "args": {
+      "results_dir": "results/popqa/full_3141_balanced",
+      "figures_dir": "results/popqa/full_3141_balanced/figures"
+    },
+    "input_args": [
+      "results_dir"
+    ]
+  },
+  "counterfact.belief": {
+    "family": "medrag",
+    "script": "81_run_premise_check_full.py",
+    "description": "Full 2,000-ID premise verification",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "ov_results_path": "../Evidence_aware/results/true_multi_head/exp_b_corrected/gate_stats/gate_stats_steering_L27H20_clip10p0_tau_0p0.jsonl",
+      "cache_path": "../Evidence_aware/data/counterfact_solvent.json"
+    },
+    "input_args": [
+      "cache_path",
+      "ov_results_path"
+    ]
+  },
+  "counterfact.stratify": {
+    "family": "medrag",
+    "script": "82_run_stratification_full.py",
+    "description": "Strict semantic ID join and belief stratification",
+    "args": {
+      "seed": 1234,
+      "ov_results_path": "../Evidence_aware/results/true_multi_head/exp_b_corrected/gate_stats/gate_stats_steering_L27H20_clip10p0_tau_0p0.jsonl",
+      "premise_path": "results/rebuttal/belief_verification_full/per_item.jsonl",
+      "cache_path": "../Evidence_aware/data/counterfact_solvent.json"
+    },
+    "input_args": [
+      "cache_path",
+      "ov_results_path",
+      "premise_path"
+    ]
+  },
+  "paper.selective": {
+    "family": "medrag",
+    "script": "63_run_selective_prediction.py",
+    "description": "Selective risk/coverage and sampling comparisons",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "medqa_matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "medqa_conflict_path": "data/medqa_conflict_500.jsonl",
+      "popqa_results_path": "../conflictqa/results/popqa/full_3141/results.jsonl",
+      "medqa_results_path": "results/medqa_final_v3/consolidation/headline_verify/H4/results.jsonl",
+      "medqa_label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "popqa_summary_path": "../conflictqa/results/popqa/full_3141/summary.json"
+    },
+    "input_args": [
+      "medqa_conflict_path",
+      "medqa_label_audit_path",
+      "medqa_matched_subset_path",
+      "medqa_results_path",
+      "popqa_results_path",
+      "popqa_summary_path"
+    ]
+  },
+  "paper.deployment": {
+    "family": "medrag",
+    "script": "62_run_deployment_characterization.py",
+    "description": "Latency, memory and batching characterization",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "llama_summary_path": "results/medqa_final_v3/consolidation/headline_verify/H4/summary.json",
+      "headline_path": "results/medqa_final_v3/pr_sweep/headline.json",
+      "conflict_path": "data/medqa_conflict_500.jsonl",
+      "llama_site_path": "results/medqa_final_v3/localization_v2/head_importance.json",
+      "mistral_summary_path": "results/cross_model/mistral_intervention/summary.json",
+      "mistral_site_path": "results/cross_model/mistral_localization/head_importance.json",
+      "qwen_summary_path": "results/cross_model/qwen_intervention/summary.json",
+      "qwen_site_path": "results/cross_model/qwen_localization/layer_importance.json"
+    },
+    "input_args": [
+      "conflict_path",
+      "headline_path",
+      "label_audit_path",
+      "llama_site_path",
+      "llama_summary_path",
+      "matched_subset_path",
+      "mistral_site_path",
+      "mistral_summary_path",
+      "qwen_site_path",
+      "qwen_summary_path"
+    ]
+  },
+  "paper.mistral-medqa": {
+    "family": "medrag",
+    "script": "68_run_medqa_cross_model_full.py",
+    "description": "Recorded camera-ready model run: mistral-medqa",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "alpha": 1.0,
+      "architecture": "Standard MHA, 32 layers, 32 heads",
+      "c1_prompt_variant": "vanilla",
+      "c2_prompt_variant": "trust_instruction",
+      "cache_dir": "cache/cross_model/mistral_medqa_L29H2_tlb",
+      "conflict_path": "data/medqa_conflict_500.jsonl",
+      "headline_path": "results/medqa_final_v3/pr_sweep/headline.json",
+      "intervention_impl": "token_logit_bias",
+      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "llama_summary_path": "results/medqa_final_v3/consolidation/headline_verify/H4/summary.json",
+      "localization_path": "results/cross_model/mistral_localization/head_importance.json",
+      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "max_length": 1024,
+      "max_new_tokens": 5,
+      "model_id": "mistralai/Mistral-7B-Instruct-v0.3",
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "out_dir": "results/cross_model/mistral_medqa_L29H2_tlb_full",
+      "override_target_head": 2,
+      "override_target_layer": 29,
+      "p_set_mode": "all_wrong",
+      "pilot_summary_path": "results/cross_model/mistral_medqa_L29H2_tlb_pilot/pilot/margin_auc.json",
+      "site_mode": "head"
+    },
+    "input_args": [
+      "conflict_path",
+      "headline_path",
+      "label_audit_path",
+      "llama_summary_path",
+      "localization_path",
+      "matched_subset_path",
+      "pilot_summary_path"
+    ],
+    "scope": "Archived CLI configuration. Requires the same frozen inputs, localization and pilot outputs; regenerate prerequisites before execution. Historical hardware/software lock is unavailable.",
+    "source_metadata": {
+      "source": "mistral_medqa_L29H2_tlb_full/summary.json",
+      "sha256": "a287e85bbd02b150db6225969f3705df98c4bfc5222568f17ec8a78e2302fb9b",
+      "unsupported_archived_args": {}
+    }
+  },
+  "paper.qwen-medqa": {
+    "family": "medrag",
+    "script": "68_run_medqa_cross_model_full.py",
+    "description": "Recorded camera-ready model run: qwen-medqa",
+    "args": {
+      "seed": 1,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "architecture": "GQA, 28 layers, 28Q/4KV heads",
+      "c1_prompt_variant": "vanilla",
+      "c2_prompt_variant": "trust_instruction",
+      "cache_dir": "cache/cross_model/qwen_medqa_20260515",
+      "conflict_path": "data/medqa_conflict_500.jsonl",
+      "headline_path": "results/medqa_final_v3/pr_sweep/headline.json",
+      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "llama_summary_path": "results/medqa_final_v3/consolidation/headline_verify/H4/summary.json",
+      "localization_path": "results/cross_model/qwen_localization/layer_importance.json",
+      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "max_length": 1024,
+      "max_new_tokens": 5,
+      "model_id": "Qwen/Qwen2-7B-Instruct",
+      "model_name": "Qwen2-7B-Instruct",
+      "out_dir": "results/cross_model/qwen_intervention_20260515",
+      "p_set_mode": "all_wrong",
+      "pilot_summary_path": "results/cross_model/qwen_intervention_20260515/pilot/margin_auc.json",
+      "site_mode": "layer",
+      "intervention_impl": "token_logit_bias"
+    },
+    "input_args": [
+      "conflict_path",
+      "headline_path",
+      "label_audit_path",
+      "llama_summary_path",
+      "localization_path",
+      "matched_subset_path",
+      "pilot_summary_path"
+    ],
+    "scope": "Archived CLI configuration. Requires the same frozen inputs, localization and pilot outputs; regenerate prerequisites before execution. Historical hardware/software lock is unavailable.",
+    "source_metadata": {
+      "source": "qwen_intervention_20260515/summary.json",
+      "sha256": "c62e95ef1a533f8ddd4a7d3de7ccebe8e169bd772f75375cd4b16942b9142e50",
+      "unsupported_archived_args": {}
+    }
+  },
+  "paper.mistral-counterfact": {
+    "family": "medrag",
+    "script": "72_run_counterfact_cross_model_full.py",
+    "description": "Recorded camera-ready model run: mistral-counterfact",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "architecture": "Standard MHA, 32 layers, 32 heads",
+      "cache_path": "../Evidence_aware/data/counterfact_solvent.json",
+      "evidence_mode": "relation_or_question_answer",
+      "localization_path": "results/cross_model/mistral_counterfact_localization_v2/head_importance.json",
+      "max_items": 500,
+      "max_length": 256,
+      "max_new_tokens": 5,
+      "model_id": "mistralai/Mistral-7B-Instruct-v0.3",
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "out_dir": "results/cross_model/mistral_counterfact_L29H2_v2_full",
+      "override_target_head": 2,
+      "override_target_layer": 29,
+      "pilot_summary_path": "results/cross_model/mistral_counterfact_L29H2_v2_pilot/pilot/margin_auc.json"
+    },
+    "input_args": [
+      "cache_path",
+      "localization_path",
+      "pilot_summary_path"
+    ],
+    "scope": "Archived CLI configuration. Requires the same frozen inputs, localization and pilot outputs; regenerate prerequisites before execution. Historical hardware/software lock is unavailable.",
+    "source_metadata": {
+      "source": "mistral_counterfact_L29H2_v2_full/summary.json",
+      "sha256": "0b45b6dfeacbc1ab1ce06d3f357f0532461c46c49537cd1e9f68683938d260af",
+      "unsupported_archived_args": {}
+    }
+  },
+  "paper.qwen-counterfact": {
+    "family": "medrag",
+    "script": "72_run_counterfact_cross_model_full.py",
+    "description": "Recorded camera-ready model run: qwen-counterfact",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "architecture": "GQA, 28 layers, 28 heads",
+      "cache_path": "../Evidence_aware/data/counterfact_solvent.json",
+      "evidence_mode": "relation_or_question_answer",
+      "localization_path": "results/cross_model/qwen_counterfact_localization_v2/head_importance.json",
+      "max_items": 500,
+      "max_length": 256,
+      "max_new_tokens": 5,
+      "model_id": "Qwen/Qwen2-7B-Instruct",
+      "model_name": "Qwen2-7B-Instruct",
+      "out_dir": "results/cross_model/qwen_counterfact_v2_full",
+      "override_target_head": null,
+      "override_target_layer": null,
+      "pilot_summary_path": "results/cross_model/qwen_counterfact_v2_pilot/pilot/margin_auc.json"
+    },
+    "input_args": [
+      "cache_path",
+      "localization_path",
+      "pilot_summary_path"
+    ],
+    "scope": "Archived CLI configuration. Requires the same frozen inputs, localization and pilot outputs; regenerate prerequisites before execution. Historical hardware/software lock is unavailable.",
+    "source_metadata": {
+      "source": "qwen_counterfact_v2_full/summary.json",
+      "sha256": "aff670767b695f9b6ca775237ab4a5078531db5993fd9aa58c09236dddd52ca9",
+      "unsupported_archived_args": {}
+    }
+  },
+  "paper.mistral-popqa": {
+    "family": "conflictqa",
+    "script": "63_run_popqa_intervention.py",
+    "description": "Recorded camera-ready model run: mistral-popqa",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "evidence_token_source": "aliases",
+      "fixed_lambda": null,
+      "fixed_lambda_pos": null,
+      "fixed_tau": null,
+      "input_path": "results/cross_model/mistral_popqa_c2_balanced_ablation/popqa_conflicts_supplemented.jsonl",
+      "intervention_mode": "balanced",
+      "lambda_pos_values": "0.0,2.5,5.0,7.5,10.0",
+      "lambda_values": "2.5,5.0,7.5,10.0",
+      "max_items": 500,
+      "max_length": 1024,
+      "max_new_tokens": 5,
+      "min_margin_auc": 0.8,
+      "min_parametric_pilot": 5,
+      "model_id": "mistralai/Mistral-7B-Instruct-v0.3",
+      "n_suppress_steps": 3,
+      "pilot_examples": 200,
+      "results_dir": "results/cross_model/mistral_popqa_c2_balanced_ablation"
+    },
+    "input_args": [
+      "input_path"
+    ],
+    "scope": "Archived CLI configuration. Requires the same frozen inputs, localization and pilot outputs; regenerate prerequisites before execution. Historical hardware/software lock is unavailable.",
+    "source_metadata": {
+      "source": "mistral_popqa_c2_balanced_ablation/summary.json",
+      "sha256": "778e3fc90d19960b372f82aca8229b8fa6fa30afaac09c3e02da3381a1b20d84",
+      "unsupported_archived_args": {}
+    }
+  },
+  "paper.qwen-popqa": {
+    "family": "conflictqa",
+    "script": "63_run_popqa_intervention.py",
+    "description": "Recorded camera-ready model run: qwen-popqa",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "evidence_token_source": "aliases",
+      "fixed_lambda": null,
+      "fixed_lambda_pos": null,
+      "fixed_tau": null,
+      "input_path": "results/cross_model/qwen_popqa_c2_balanced_ablation/popqa_conflicts_supplemented.jsonl",
+      "intervention_mode": "balanced",
+      "lambda_pos_values": "0.0,2.5,5.0,7.5,10.0",
+      "lambda_values": "2.5,5.0,7.5,10.0",
+      "max_items": 500,
+      "max_length": 1024,
+      "max_new_tokens": 5,
+      "min_margin_auc": 0.8,
+      "min_parametric_pilot": 5,
+      "model_id": "Qwen/Qwen2-7B-Instruct",
+      "n_suppress_steps": 3,
+      "pilot_examples": 200,
+      "results_dir": "results/cross_model/qwen_popqa_c2_balanced_ablation"
+    },
+    "input_args": [
+      "input_path"
+    ],
+    "scope": "Archived CLI configuration. Requires the same frozen inputs, localization and pilot outputs; regenerate prerequisites before execution. Historical hardware/software lock is unavailable.",
+    "source_metadata": {
+      "source": "qwen_popqa_c2_balanced_ablation/summary.json",
+      "sha256": "4d8aa47f8543f0940caeac7933437ac6781abdb5dfa0f01b886b309465ab4851",
+      "unsupported_archived_args": {}
+    }
+  },
+  "mistral.medqa-localize": {
+    "family": "medrag",
+    "script": "43_run_medqa_localization.py",
+    "description": "Localize mistral medqa",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "model_id": "mistralai/Mistral-7B-Instruct-v0.3",
+      "out_dir": "results/cross_model/mistral_medqa_localization",
+      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "conflict_path": "data/medqa_conflict_500.jsonl",
+      "h4_results_path": "results/medqa_final_v3/consolidation/headline_verify/H4/results.jsonl"
+    },
+    "input_args": [
+      "conflict_path",
+      "h4_results_path",
+      "label_audit_path",
+      "matched_subset_path"
+    ]
+  },
+  "mistral.counterfact-localize": {
+    "family": "medrag",
+    "script": "70_localize_counterfact_cross_model.py",
+    "description": "Localize mistral counterfact",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "model_id": "mistralai/Mistral-7B-Instruct-v0.3",
+      "out_dir": "results/cross_model/mistral_counterfact_localization",
+      "evidence_mode": "relation_or_question_answer",
+      "max_items": 500,
+      "cache_path": "../Evidence_aware/data/counterfact_solvent.json"
+    },
+    "input_args": [
+      "cache_path"
+    ]
+  },
+  "mistral.medqa-pilot": {
+    "family": "medrag",
+    "script": "67_run_medqa_cross_model_pilot.py",
+    "description": "Pilot calibration for mistral MedQA",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "model_id": "mistralai/Mistral-7B-Instruct-v0.3",
+      "model_name": "mistral",
+      "architecture": "GQA",
+      "site_mode": "head",
+      "localization_path": "results/cross_model/mistral_medqa_localization/head_importance.json",
+      "override_target_layer": 29,
+      "override_target_head": 2,
+      "out_dir": "results/cross_model/mistral_medqa_pilot",
+      "cache_dir": "cache/cross_model/mistral_medqa",
+      "intervention_impl": "token_logit_bias",
+      "pilot_examples": 200,
+      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "headline_path": "results/medqa_final_v3/pr_sweep/headline.json",
+      "conflict_path": "data/medqa_conflict_500.jsonl"
+    },
+    "input_args": [
+      "conflict_path",
+      "headline_path",
+      "label_audit_path",
+      "localization_path",
+      "matched_subset_path"
+    ]
+  },
+  "mistral.counterfact-pilot": {
+    "family": "medrag",
+    "script": "71_run_counterfact_cross_model_pilot.py",
+    "description": "Pilot calibration for mistral CounterFact",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "model_id": "mistralai/Mistral-7B-Instruct-v0.3",
+      "localization_path": "results/cross_model/mistral_counterfact_localization/head_importance.json",
+      "out_dir": "results/cross_model/mistral_counterfact_v2_pilot",
+      "evidence_mode": "relation_or_question_answer",
+      "max_items": 500,
+      "lambda_neg_grid": "5.0,7.5,10.0,15.0,20.0",
+      "lambda_pos_grid": "0.0,5.0,10.0",
+      "cache_path": "../Evidence_aware/data/counterfact_solvent.json"
+    },
+    "input_args": [
+      "cache_path",
+      "localization_path"
+    ]
+  },
+  "qwen.medqa-localize": {
+    "family": "medrag",
+    "script": "49_run_medqa_localization_qwen.py",
+    "description": "Localize qwen medqa",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "model_id": "Qwen/Qwen2-7B-Instruct",
+      "out_dir": "results/cross_model/qwen_medqa_localization",
+      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "conflict_path": "data/medqa_conflict_500.jsonl",
+      "h4_results_path": "results/medqa_final_v3/consolidation/headline_verify/H4/results.jsonl"
+    },
+    "input_args": [
+      "conflict_path",
+      "h4_results_path",
+      "label_audit_path",
+      "matched_subset_path"
+    ]
+  },
+  "qwen.counterfact-localize": {
+    "family": "medrag",
+    "script": "70_localize_counterfact_cross_model.py",
+    "description": "Localize qwen counterfact",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "model_id": "Qwen/Qwen2-7B-Instruct",
+      "out_dir": "results/cross_model/qwen_counterfact_localization",
+      "evidence_mode": "relation_or_question_answer",
+      "max_items": 500,
+      "cache_path": "../Evidence_aware/data/counterfact_solvent.json"
+    },
+    "input_args": [
+      "cache_path"
+    ]
+  },
+  "qwen.medqa-pilot": {
+    "family": "medrag",
+    "script": "67_run_medqa_cross_model_pilot.py",
+    "description": "Pilot calibration for qwen MedQA",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "model_id": "Qwen/Qwen2-7B-Instruct",
+      "model_name": "qwen",
+      "architecture": "GQA",
+      "site_mode": "layer",
+      "localization_path": "results/cross_model/qwen_medqa_localization/layer_importance.json",
+      "override_target_layer": 24,
+      "override_target_head": 26,
+      "out_dir": "results/cross_model/qwen_medqa_pilot",
+      "cache_dir": "cache/cross_model/qwen_medqa",
+      "intervention_impl": "token_logit_bias",
+      "pilot_examples": 200,
+      "matched_subset_path": "results/medqa_final_v3/matched_subset.json",
+      "label_audit_path": "results/medqa_final_v3/label_audit.json",
+      "headline_path": "results/medqa_final_v3/pr_sweep/headline.json",
+      "conflict_path": "data/medqa_conflict_500.jsonl"
+    },
+    "input_args": [
+      "conflict_path",
+      "headline_path",
+      "label_audit_path",
+      "localization_path",
+      "matched_subset_path"
+    ]
+  },
+  "qwen.counterfact-pilot": {
+    "family": "medrag",
+    "script": "71_run_counterfact_cross_model_pilot.py",
+    "description": "Pilot calibration for qwen CounterFact",
+    "args": {
+      "seed": 1234,
+      "device": "cuda",
+      "torch_dtype": "bfloat16",
+      "model_id": "Qwen/Qwen2-7B-Instruct",
+      "localization_path": "results/cross_model/qwen_counterfact_localization/head_importance.json",
+      "out_dir": "results/cross_model/qwen_counterfact_v2_pilot",
+      "evidence_mode": "relation_or_question_answer",
+      "max_items": 500,
+      "lambda_neg_grid": "5.0,7.5,10.0,15.0,20.0",
+      "lambda_pos_grid": "0.0,5.0,10.0",
+      "cache_path": "../Evidence_aware/data/counterfact_solvent.json"
+    },
+    "input_args": [
+      "cache_path",
+      "localization_path"
+    ]
+  }
+}

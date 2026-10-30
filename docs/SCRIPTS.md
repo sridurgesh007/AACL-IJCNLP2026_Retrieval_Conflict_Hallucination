@@ -1,0 +1,43 @@
+# Script index
+
+All scripts below are author implementation code. Earlier helpers are retained only for dependency compatibility; supported starting points are the named profiles in `configs/experiments.json`. Raw CLI defaults are historical, not a promise that their input files exist.
+
+- `counterfact.prepare`: `Evidence_aware/scripts/00_prepare_data_cache.py` - Download and normalize CounterFact (text only)
+- `counterfact.trace`: `Evidence_aware/scripts/01_phase1_diagnostics.py` - Per-head decomposition and layer margins
+- `counterfact.baseline`: `Evidence_aware/scripts/02_run_phase2.py` - Disjoint validation and 2,000-item baseline
+- `counterfact.ov`: `Evidence_aware/scripts/09_run_true_multi_head.py` - Gated OV steering and gain diagnostics
+- `medqa.prepare`: `medrag/scripts/22_build_medqa_conflict.py` - Construct model-filtered MedQA conflict inputs
+- `medqa.preflight`: `medrag/scripts/29_preflight_medqa_v3.py` - Prepare condition caches and audit template
+- `medqa.decomposition`: `medrag/scripts/30_run_medqa_decomposition.py` - Label/content and promotion/suppression grid
+- `medqa.sweep`: `medrag/scripts/31_run_medqa_pr_sweep.py` - Pilot threshold and representation sweep
+- `medqa.killtest`: `medrag/scripts/32_run_medqa_killtest.py` - Prompt controls and gated intervention
+- `medqa.headline`: `medrag/scripts/34_run_medqa_balanced_headline.py` - H1-H4 verification including suppression headline
+- `medqa.localize`: `medrag/scripts/43_run_medqa_localization.py` - MedQA-specific per-head localization
+- `medqa.pairs`: `medrag/scripts/40_run_causal_patching.py` - Build patching pairs and single-head controls
+- `medqa.joint`: `medrag/scripts/47_run_medqa_joint_patching.py` - Joint top-five causal patching
+- `medqa.matched-controls`: `medrag/scripts/83_run_matched_head_controls.py` - Matched random/attribution/disruption controls
+- `medqa.subthreshold`: `medrag/scripts/33_run_medqa_decomposition_subthreshold.py` - Subthreshold dose-response analysis
+- `popqa.prepare`: `conflictqa/scripts/62_build_popqa_conflict.py` - Prepare PopQA candidates from official raw TSV
+- `popqa.rebuild`: `conflictqa/scripts/67_rebuild_popqa_c2_conflicts.py` - Model-specific C2-resistant subset
+- `popqa.balanced`: `conflictqa/scripts/63_run_popqa_intervention.py` - Llama balanced alias-promotion full evaluation
+- `popqa.suppression`: `conflictqa/scripts/63_run_popqa_intervention.py` - Suppression-only ablation with separate outputs
+- `popqa.plot`: `conflictqa/scripts/64_plot_popqa_results.py` - Render plots from regenerated local outputs
+- `popqa.analyze`: `conflictqa/scripts/65_analyze_popqa_results.py` - Stratification and paired comparisons from outputs
+- `counterfact.belief`: `medrag/scripts/81_run_premise_check_full.py` - Full 2,000-ID premise verification
+- `counterfact.stratify`: `medrag/scripts/82_run_stratification_full.py` - Strict semantic ID join and belief stratification
+- `paper.selective`: `medrag/scripts/63_run_selective_prediction.py` - Selective risk/coverage and sampling comparisons
+- `paper.deployment`: `medrag/scripts/62_run_deployment_characterization.py` - Latency, memory and batching characterization
+- `paper.mistral-medqa`: `medrag/scripts/68_run_medqa_cross_model_full.py` - Recorded camera-ready model run: mistral-medqa
+- `paper.qwen-medqa`: `medrag/scripts/68_run_medqa_cross_model_full.py` - Recorded camera-ready model run: qwen-medqa
+- `paper.mistral-counterfact`: `medrag/scripts/72_run_counterfact_cross_model_full.py` - Recorded camera-ready model run: mistral-counterfact
+- `paper.qwen-counterfact`: `medrag/scripts/72_run_counterfact_cross_model_full.py` - Recorded camera-ready model run: qwen-counterfact
+- `paper.mistral-popqa`: `conflictqa/scripts/63_run_popqa_intervention.py` - Recorded camera-ready model run: mistral-popqa
+- `paper.qwen-popqa`: `conflictqa/scripts/63_run_popqa_intervention.py` - Recorded camera-ready model run: qwen-popqa
+- `mistral.medqa-localize`: `medrag/scripts/43_run_medqa_localization.py` - Localize mistral medqa
+- `mistral.counterfact-localize`: `medrag/scripts/70_localize_counterfact_cross_model.py` - Localize mistral counterfact
+- `mistral.medqa-pilot`: `medrag/scripts/67_run_medqa_cross_model_pilot.py` - Pilot calibration for mistral MedQA
+- `mistral.counterfact-pilot`: `medrag/scripts/71_run_counterfact_cross_model_pilot.py` - Pilot calibration for mistral CounterFact
+- `qwen.medqa-localize`: `medrag/scripts/49_run_medqa_localization_qwen.py` - Localize qwen medqa
+- `qwen.counterfact-localize`: `medrag/scripts/70_localize_counterfact_cross_model.py` - Localize qwen counterfact
+- `qwen.medqa-pilot`: `medrag/scripts/67_run_medqa_cross_model_pilot.py` - Pilot calibration for qwen MedQA
+- `qwen.counterfact-pilot`: `medrag/scripts/71_run_counterfact_cross_model_pilot.py` - Pilot calibration for qwen CounterFact

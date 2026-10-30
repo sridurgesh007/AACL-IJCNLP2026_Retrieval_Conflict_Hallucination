@@ -1,0 +1,7 @@
+{
+  "bootstrap_space": "E_letter",
+  "intervention_space": "E_letter",
+  "lambda_pos": 0.0,
+  "lambda_neg": 2.5,
+  "tau_margin": 2.0
+}

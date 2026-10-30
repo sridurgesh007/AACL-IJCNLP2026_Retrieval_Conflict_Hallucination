@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Please cite the AACL-IJCNLP 2026 paper and the original dataset papers when using this code."
+title: "Mechanistic Evidence Routing in Transformers: Margin-Gated Intervention for Retrieval-Conflict Hallucination"
+type: software
+authors:
+  - family-names: Ravichandran
+    given-names: Sridurgesh
+    affiliation: National University of Singapore
+repository-code: "https://github.com/sridurgesh007/AACL-IJCNLP2026_Retrieval_Conflict_Hallucination"
+license: MIT
+version: 0.1.0

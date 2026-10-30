@@ -1,0 +1,23 @@
+{
+  "note": "Historical SHA256 fingerprints only. Files are acquired or regenerated separately; no benchmark rows or model outputs are included. Paths are family-relative historical logical paths.",
+  "runs": {
+    "qwen_intervention_20260515": {
+      "data/medqa_conflict_500.jsonl": "0170898496ab653b62f012206dd3662bb0a1c43148944db969e02f7ed70934cb",
+      "results/cross_model/qwen_intervention_20260515/pilot/margin_auc.json": "18834a4d6c3f1c1bd19697c4c6d3c6db72293f1d8c3d516b699358425fc7d1be",
+      "results/cross_model/qwen_localization/layer_importance.json": "480ac7101ebaab44de10550d93852cfdffb0b0aebe7261f5650730769b5a5a1c",
+      "results/medqa_final_v3/consolidation/headline_verify/H4/summary.json": "89b4f89a0a585d5e659b4d0321b127c9a4eb4bc4795ec5f37df5f267346f5480",
+      "results/medqa_final_v3/label_audit.json": "5b3a6a535aac811cf34d12859d0e5dea2b420c5d1aa85fbfedbc51a9a03be115",
+      "results/medqa_final_v3/matched_subset.json": "07f10e3d293638c3c58747a3df6a3c18495f86759521533d97c2eecf185202af",
+      "results/medqa_final_v3/pr_sweep/headline.json": "5ead0fae10e7997985a77dc781562d2632d441fd842ceedbcd8b8a3146399478"
+    },
+    "mistral_medqa_L29H2_tlb_full": {
+      "data/medqa_conflict_500.jsonl": "0170898496ab653b62f012206dd3662bb0a1c43148944db969e02f7ed70934cb",
+      "results/cross_model/mistral_localization/head_importance.json": "75efd441d10a4dfdd29fad12dd2c544628a890ddd0beedadea410b54948ecabc",
+      "results/cross_model/mistral_medqa_L29H2_tlb_pilot/pilot/margin_auc.json": "cc05e3227a7ba03a4cd3d27e227ed4c45f72ef4b02a42315cfeb10abd7293619",
+      "results/medqa_final_v3/consolidation/headline_verify/H4/summary.json": "89b4f89a0a585d5e659b4d0321b127c9a4eb4bc4795ec5f37df5f267346f5480",
+      "results/medqa_final_v3/label_audit.json": "5b3a6a535aac811cf34d12859d0e5dea2b420c5d1aa85fbfedbc51a9a03be115",
+      "results/medqa_final_v3/matched_subset.json": "07f10e3d293638c3c58747a3df6a3c18495f86759521533d97c2eecf185202af",
+      "results/medqa_final_v3/pr_sweep/headline.json": "5ead0fae10e7997985a77dc781562d2632d441fd842ceedbcd8b8a3146399478"
+    }
+  }
+}

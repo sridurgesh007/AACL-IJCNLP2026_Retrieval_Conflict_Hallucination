@@ -6,7 +6,7 @@ Sridurgesh Ravichandran, National University of Singapore
 
 AACL-IJCNLP 2026
 
-This is the **code-only reproduction repository** for the paper. It contains the authors' localization, margin gating, OV steering, token-bias interventions, causal patching, ablations, data preparation and analysis scripts. It does **not** redistribute benchmark datasets, model weights, activation caches, per-item outputs, plots, third-party benchmark repositories, or large artifacts.
+This is the **code-only reproduction repository** for the paper. It contains localization, margin gating, OV steering, token-bias interventions, causal patching, ablations, data preparation and analysis scripts. It does **not** redistribute benchmark datasets, model weights, activation caches, per-item outputs, plots, third-party benchmark repositories, or large artifacts.
 
 > **Scope:** evidence and parametric answer identities are constructed from known benchmark answers. The experiments are oracle-conditioned mechanistic analyses, not a deployed RAG system that discovers the correct answer automatically. Following CounterFact evidence measures compliance with a controlled, sometimes false, assertion.
 
@@ -85,7 +85,7 @@ The supplied time/memory values are resource requests, not runtime guarantees. L
 
 ## Datasets and attribution
 
-Please cite the original dataset papers as well as this work. Download from the original maintainers; the repository's MIT license applies only to our code and does not relicense data or models.
+Please cite the original dataset papers as well as this work. Download from the original maintainers; the repository's MIT license applies only to the code in this repository and does not relicense data or models.
 
 | Dataset | Paper | Maintainer source |
 |---|---|---|
@@ -94,13 +94,7 @@ Please cite the original dataset papers as well as this work. Download from the 
 | PopQA | Mallen et al. (2023), [When Not to Trust Language Models](https://aclanthology.org/2023.acl-long.546/) | [adaptive-retrieval](https://github.com/AlexTMallen/adaptive-retrieval) |
 | ClashEval, optional scope study | Wu et al. (2024), [ClashEval](https://arxiv.org/abs/2404.10198) | Obtain the upstream response/data file separately; see the loader schema in the implementation |
 
-Dataset availability and licenses are governed by their maintainers. Check the applicable upstream terms before downloading, redistributing or using any derived examples. We do not bundle third-party benchmark suites. Prompt controls and the paper's optional ITI comparison are author-written experiment code; the core method does not require third-party baseline checkpoints.
-
-## Statistics and storage policy
-
-Restoration and harm use different populations. The MedQA headline restoration is measured on 40 initially wrong clean items; its harm population is the larger matched set of initially correct controls. The causal experiment uses 35 pairs. `tools/audit_medqa.py` reports numerator, denominator, Wilson interval and exact paired McNemar statistics separately for clean and full matched populations. Duplicate IDs and partial joins fail instead of silently reducing the denominator.
-
-All runtime datasets, caches, outputs and logs are Git-ignored. A CI check rejects staged benchmark/generated files and files over 2 MB. See [Storage policy](docs/STORAGE.md) before adding material. Reproduction scripts create their outputs locally; no result archive is required in Git.
+Dataset availability and licenses are governed by their maintainers. Check the applicable upstream terms before downloading, redistributing or using any derived examples. This repository does not bundle third-party benchmark suites. Prompt controls and the paper's optional ITI comparison are implemented here; the core method does not require third-party baseline checkpoints.
 
 ## Citation
 

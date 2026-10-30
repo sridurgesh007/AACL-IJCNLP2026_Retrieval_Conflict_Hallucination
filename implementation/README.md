@@ -8,7 +8,7 @@ The three sibling directories retain the layout used in the research code. Sever
 | `medrag/src/medrag` | MedQA prompt construction, token sets, activation caching, gated interventions, causal patching, cross-model evaluation, statistics and selective prediction |
 | `conflictqa/src/conflictqa_pipeline` | Entity normalization/matching, chat prompts, token sets, PopQA preparation, promotion and suppression |
 
-`medrag` is the authors' local package name, not a redistributed copy of an external MedRAG benchmark. Third-party datasets and frameworks are not included. Some older helpers remain because later scripts import them; use the release profiles and paper-to-code map to choose the intended experiment.
+`medrag` is the local package name used in this repository, not a redistributed copy of an external MedRAG benchmark. Third-party datasets and frameworks are not included. Some older helpers remain because later scripts import them; use the release profiles and paper-to-code map to choose the intended experiment.
 
 ## Mechanics
 
